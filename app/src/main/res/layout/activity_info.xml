@@ -1,0 +1,53 @@
+
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/info_pager"
+        >
+
+    </androidx.viewpager.widget.ViewPager>
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nav_dots"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        android:layout_above="@id/buttonPanel"
+        app:tabIndicatorHeight="0dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:id="@+id/buttonPanel"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_weight="0.5"
+            android:text="Sign in"
+            android:layout_marginRight="1dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/alatsi_regular"
+            android:textFontWeight="900"
+            android:id="@+id/signin_btn"
+            />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_weight="0.5"
+        android:text="Sign up"
+        android:layout_marginLeft="1dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/alatsi_regular"
+        android:textFontWeight="900"
+        android:id="@+id/signup_btn"
+        />
+    </LinearLayout>
+</RelativeLayout>

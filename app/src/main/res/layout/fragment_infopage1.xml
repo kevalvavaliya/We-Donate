@@ -1,0 +1,35 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tomato"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="10dp"
+        android:layout_weight="0.3"
+        android:src="@drawable/info1"/>
+    <TextView
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is We-Donate?"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/rocknrollone_regular"
+        android:textAlignment="center"
+        android:textColor="@color/goldyellow"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info1"
+        android:textSize="15dp"
+        android:layout_weight="0.15"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="18dp"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="2dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textAlignment="center"/>
+</LinearLayout>
