@@ -1,0 +1,39 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightskyblue"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <com.infotech.wedonate.adapter.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.7"
+        android:id="@+id/img_info3"
+        android:scaleY="1.3"
+        android:scaleX="1.3"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is We-Donate?"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/rocknrollone_regular"
+        android:textAlignment="center"
+        android:textColor="@color/tomato"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info3"
+        android:textSize="16dp"
+        android:layout_weight="0.15"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="18dp"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="2dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textAlignment="center"/>
+</LinearLayout>
