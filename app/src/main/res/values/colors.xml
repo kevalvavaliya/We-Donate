@@ -9,7 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tomato">#ce253a</color>
     <color name="goldyellow">#ffb441</color>
+    <color name="darkgolden">#f4b804</color>
+    <color name="darkgoldyellow">#fbaa2d</color>
     <color name="skyblue">#11c9fb</color>
     <color name="lightskyblue">#2cd3ff</color>
-    <color name="darkgoldyellow">#fbaa2d</color>
+    <color name="lightgrey">#bdbdbd</color>
+
 </resources>
