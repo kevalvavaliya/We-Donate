@@ -145,6 +145,6 @@
         android:layout_weight="0.08"
         android:elevation="2dp"
         android:text="Next"
-
+        android:fontFamily="@font/alatsi_regular"
         />
 </LinearLayout>
