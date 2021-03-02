@@ -71,12 +71,11 @@ public class user_selector extends AppCompatActivity implements View.OnClickList
             charity_r.setChecked(true);
             flag=2;
         }
-        if(id==R.id.next_btn)
-        {
+        if(id==R.id.next_btn) {
             Intent intent;
-            switch(flag){
+            switch (flag) {
 
-                case 0 :
+                case 0:
                     intent = new Intent(this, signup_member.class);
                     startActivity(intent);
                     break;
@@ -90,9 +89,8 @@ public class user_selector extends AppCompatActivity implements View.OnClickList
                     startActivity(intent);
                     break;
                 case -1:
-                    Toast.makeText(this,"please choose yourself",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "please choose yourself", Toast.LENGTH_LONG).show();
             }
-
         }
     }
 }
