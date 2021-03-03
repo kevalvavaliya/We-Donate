@@ -1,9 +1,124 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.signup_module.signup_member">
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:weightSum="1">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include android:layout_height="0dp"
+        android:layout_weight="0.06"
+        android:layout_width="match_parent"
+        layout="@layout/toolbar"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.45"
+        android:fitsSystemWindows="true"
+        android:src="@drawable/member_signup_img" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.55"
+        android:background="@drawable/signup_back"
+        android:elevation="100dp"
+        android:orientation="vertical"
+        android:paddingTop="30dp"
+        android:backgroundTint="@color/skyblue"
+        android:paddingLeft="42dp"
+        android:paddingRight="42dp"
+        android:paddingBottom="20dp"
+        android:weightSum="1.2">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/signup_field_back"
+            android:hint="Name"
+            android:paddingLeft="12dp"
+            android:textSize="14dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/rocknrollone_regular"
+            android:textColorHint="@color/lightgrey" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/signup_field_back"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="12dp"
+            android:textSize="14dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/rocknrollone_regular"
+            android:textColorHint="@color/lightgrey" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/signup_field_back"
+            android:hint="Mobile Number"
+            android:paddingLeft="12dp"
+            android:inputType="phone"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/rocknrollone_regular"
+            android:textColorHint="@color/lightgrey" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/signup_field_back"
+            android:hint="Charity Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="12dp"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/rocknrollone_regular"
+            android:textColorHint="@color/lightgrey" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/signup_field_back"
+            android:hint="Password"
+            android:paddingLeft="12dp"
+            android:inputType="textPassword"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="3dp"
+            android:id="@+id/pass_member"
+            android:fontFamily="@font/rocknrollone_regular"
+            android:textColorHint="@color/lightgrey" />
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Password"
+            android:textColor="@color/black"
+            android:fontFamily="@font/alatsi_regular"
+            android:buttonTint="@color/black"
+            android:id="@+id/pass_toggle"
+            android:layout_marginBottom="17dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.23"
+            android:background="@color/black"
+            android:text="Signup"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/alatsi_regular"
+            android:textAlignment="center"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

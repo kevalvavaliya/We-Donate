@@ -25,6 +25,7 @@
         android:layout_weight="0.45"
         android:background="@drawable/signup_back"
         android:elevation="100dp"
+        android:backgroundTint="@color/darkgoldyellow"
         android:orientation="vertical"
         android:paddingTop="42dp"
         android:paddingLeft="42dp"
