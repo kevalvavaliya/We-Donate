@@ -114,6 +114,7 @@
             android:layout_weight="0.23"
             android:background="@color/black"
             android:text="Signup"
+            android:id="@+id/signup_btn_mem"
             android:layout_gravity="bottom"
             android:fontFamily="@font/alatsi_regular"
             android:textAlignment="center"
