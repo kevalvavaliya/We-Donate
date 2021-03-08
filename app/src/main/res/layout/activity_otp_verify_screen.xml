@@ -14,8 +14,8 @@
         android:text="Verification"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="32dp" />
+        android:textSize="32dp"
+        android:textStyle="bold" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -29,9 +29,8 @@
         android:layout_weight="0.15"
         android:text="Enter verification code we just\n send you on your email\n address."
         android:textAlignment="center"
-        android:textSize="22dp"
         android:textColor="@color/black"
-         />
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,8 +49,14 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:backgroundTint="@color/black"
-            android:inputType="number" />
+            android:fontFamily="@font/rocknrollone_regular"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/ed2"
@@ -59,8 +64,14 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:backgroundTint="@color/black"
-            android:inputType="number" />
+            android:fontFamily="@font/rocknrollone_regular"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/ed3"
@@ -68,17 +79,29 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:backgroundTint="@color/black"
-            android:inputType="number" />
+            android:fontFamily="@font/rocknrollone_regular"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/ed4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/black"
             android:layout_weight="1"
-            android:inputType="number" />
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/rocknrollone_regular"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <Button

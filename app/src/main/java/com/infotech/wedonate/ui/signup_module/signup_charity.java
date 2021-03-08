@@ -28,7 +28,7 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
         setContentView(R.layout.activity_signup_charity);
 
         passtoggle=findViewById(R.id.pass_toggle);
-        passcharity =findViewById(R.id.pass_donor);
+        passcharity =findViewById(R.id.pass_charity);
         toolbar = findViewById(R.id.toolbar);
         dr=getResources().getDrawable(R.drawable.back_arrow);
 
