@@ -102,6 +102,8 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
             donor_user.setPass(pass);
             donor_user.setUsertype(usertype);
 
+            /********API---CALL************************/
+
             Call<signup_response> c = apIinterface.signup_donor(donor_user);
             c.enqueue(new Callback<signup_response>() {
                 @Override
