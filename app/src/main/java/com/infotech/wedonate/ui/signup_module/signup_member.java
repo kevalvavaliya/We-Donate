@@ -11,29 +11,41 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.infotech.wedonate.API.APIinterface;
+import com.infotech.wedonate.API.signup_response;
 import com.infotech.wedonate.R;
+import com.infotech.wedonate.data.signup_data_model;
 import com.infotech.wedonate.user_selector;
+import com.infotech.wedonate.util.Retroclient;
 import com.infotech.wedonate.util.passtoogler;
 
-public class signup_member extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class signup_member extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     CheckBox passtoggle;
     Toolbar toolbar;
-    EditText passmember;
+    EditText m_pass, m_name, m_email, m_mobile,m_charity_email;
     Drawable dr;
+    String name, email, pass, mobile, usertype,charityemail;
+    APIinterface apIinterface;
     Button signup_mem;
+    signup_data_model member_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_member);
-        passtoggle=findViewById(R.id.pass_toggle);
-        passmember=findViewById(R.id.pass_member);
-        toolbar = findViewById(R.id.toolbar);
-        signup_mem= findViewById(R.id.signup_btn_mem);
 
-   /******************Temprorary ************************/
+        initalization();
+        apIinterface = Retroclient.retroinit();
+
+
+   /******************Temprorary ************************
         signup_mem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,10 +72,66 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
                 //  Log.d("keval","press");
             }
         });
+
+        signup_mem.setOnClickListener(this);
+    }
+    void initalization()
+    {
+        passtoggle=findViewById(R.id.pass_toggle);
+        m_name=findViewById(R.id.m_name);
+        m_email=findViewById(R.id.m_email);
+        m_charity_email=findViewById(R.id.m_charityemail);
+        m_mobile=findViewById(R.id.m_mobile);
+        m_pass=findViewById(R.id.pass_member);
+        toolbar = findViewById(R.id.toolbar);
+        signup_mem= findViewById(R.id.signup_btn_mem);
+
+        member_user=new signup_data_model();
     }
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         passtoogler p = new passtoogler();
-        p.tooglevisiblity(isChecked,passmember);
+        p.tooglevisiblity(isChecked,m_pass);
+    }
+
+    @Override
+    public void onClick(View v) {
+        usertype="member";
+        name=m_name.getText().toString();
+        email=m_email.getText().toString();
+        pass=m_pass.getText().toString();
+        mobile=m_mobile.getText().toString();
+        charityemail=m_charity_email.getText().toString();
+
+        if (name.length() == 0 || email.length() == 0 || mobile.length() == 0 || pass.length() == 0 || charityemail.length()==0) {
+            Toast.makeText(this, "Enter all details", Toast.LENGTH_LONG).show();
+        }
+        else{
+            member_user.setName(name);
+            member_user.setEmail(email);
+            member_user.setPass(pass);
+            member_user.setCharityemail(charityemail);
+            member_user.setMobile(mobile);
+            member_user.setUsertype(usertype);
+
+            Call<signup_response> c =apIinterface.signup_member(member_user);
+            c.enqueue(new Callback<signup_response>() {
+                @Override
+                public void onResponse(Call<signup_response> call, Response<signup_response> response) {
+                    if(response.code()==400)
+                    {
+                        Toast.makeText(signup_member.this,"signup failed",Toast.LENGTH_LONG).show();
+                    }
+                    else if(response.code()==200)
+                        Toast.makeText(signup_member.this,"signup success",Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onFailure(Call<signup_response> call, Throwable t) {
+                    Toast.makeText(signup_member.this,"Failure",Toast.LENGTH_LONG).show();
+
+                }
+            });
+        }
     }
 }
