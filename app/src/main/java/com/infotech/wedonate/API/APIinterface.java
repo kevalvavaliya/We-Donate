@@ -10,6 +10,9 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface APIinterface {
-    @POST("/signup")
-    Call<signup_response> signup(@Body signup_data_model user);
+    @POST("/signup_donor")
+    Call<signup_response> signup_donor(@Body signup_data_model user);
+
+    @POST("/signup_member")
+    Call<signup_response> signup_member(@Body signup_data_model user);
 }

@@ -38,7 +38,6 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
     Button signup;
     String name, email, pass, mobile, usertype;
     signup_data_model donor_user;
-    signup_response donor_response;
     APIinterface apIinterface;
 
     @Override
@@ -103,7 +102,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
             donor_user.setPass(pass);
             donor_user.setUsertype(usertype);
 
-            Call<signup_response> c = apIinterface.signup(donor_user);
+            Call<signup_response> c = apIinterface.signup_donor(donor_user);
             c.enqueue(new Callback<signup_response>() {
                 @Override
                 public void onResponse(Call<signup_response> call, Response<signup_response> response) {
@@ -118,7 +117,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
 
                 @Override
                 public void onFailure(Call<signup_response> call, Throwable t) {
-                    Log.d("api",t.toString());
+                   // Log.d("api",t.toString());
                     Toast.makeText(signup_donor.this,"Failure",Toast.LENGTH_LONG).show();
 
                 }
