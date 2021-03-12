@@ -3,6 +3,7 @@ package com.infotech.wedonate.ui.signup_module;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -30,19 +31,20 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
 
     CheckBox passtoggle;
     Toolbar toolbar;
-    EditText c_pass,c_name,c_email,c_mobile;
+    EditText c_pass, c_name, c_email, c_mobile;
     Drawable dr;
     Button signup_charity_btn;
     signup_data_model charity_user;
     APIinterface apIinterface;
     String name, email, pass, mobile, usertype;
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_charity);
 
         initalization();
-        apIinterface = Retroclient.retroinit();
 
         passtoggle.setOnCheckedChangeListener(this);
         setSupportActionBar(toolbar);
@@ -61,6 +63,7 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
 
         signup_charity_btn.setOnClickListener(this);
     }
+
     void initalization() {
         passtoggle = findViewById(R.id.pass_toggle);
         c_pass = findViewById(R.id.c_pass);
@@ -72,6 +75,10 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
         charity_user = new signup_data_model();
 
         dr = getResources().getDrawable(R.drawable.back_arrow);
+
+        apIinterface = Retroclient.retroinit();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Processing...");
     }
 
     @Override
@@ -92,27 +99,32 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
         if (name.length() == 0 || email.length() == 0 || mobile.length() == 0 || pass.length() == 0) {
             Toast.makeText(this, "Enter all details", Toast.LENGTH_LONG).show();
         } else {
+            progressDialog.show();
             charity_user.setName(name);
             charity_user.setEmail(email);
             charity_user.setMobile(mobile);
             charity_user.setPass(pass);
             charity_user.setUsertype(usertype);
 
-            Call<signup_response> c =apIinterface.signup_charity(charity_user);
+            Call<signup_response> c = apIinterface.signup_charity(charity_user);
             c.enqueue(new Callback<signup_response>() {
                 @Override
                 public void onResponse(Call<signup_response> call, Response<signup_response> response) {
-                    if(response.code()==400)
-                    {
-                        Toast.makeText(signup_charity.this,"signup failed",Toast.LENGTH_LONG).show();
+                    if (response.code() == 400) {
+                        progressDialog.dismiss();
+                        Toast.makeText(signup_charity.this, "signup failed", Toast.LENGTH_LONG).show();
+
+                    } else if (response.code() == 200) {
+                        progressDialog.dismiss();
+                        Toast.makeText(signup_charity.this, "signup success", Toast.LENGTH_LONG).show();
                     }
-                    else if(response.code()==200)
-                        Toast.makeText(signup_charity.this,"signup success",Toast.LENGTH_LONG).show();
+
                 }
 
                 @Override
                 public void onFailure(Call<signup_response> call, Throwable t) {
-                    Toast.makeText(signup_charity.this,"Failure",Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                    Toast.makeText(signup_charity.this, "server Failure", Toast.LENGTH_LONG).show();
                 }
             });
 

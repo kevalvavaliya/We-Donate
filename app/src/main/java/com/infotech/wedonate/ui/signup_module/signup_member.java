@@ -3,6 +3,7 @@ package com.infotech.wedonate.ui.signup_module;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -29,12 +30,13 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
 
     CheckBox passtoggle;
     Toolbar toolbar;
-    EditText m_pass, m_name, m_email, m_mobile,m_charity_email;
+    EditText m_pass, m_name, m_email, m_mobile, m_charity_email;
     Drawable dr;
-    String name, email, pass, mobile, usertype,charityemail;
+    String name, email, pass, mobile, usertype, charityemail;
     APIinterface apIinterface;
     Button signup_mem;
     signup_data_model member_user;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +44,19 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
         setContentView(R.layout.activity_signup_member);
 
         initalization();
-        apIinterface = Retroclient.retroinit();
 
 
-   /******************Temprorary ************************
-        signup_mem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(signup_member.this,otp_verify_screen.class);
-                startActivity(intent);
-                finish();
-            }
+        /******************Temprorary ************************
+         signup_mem.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+        Intent intent= new Intent(signup_member.this,otp_verify_screen.class);
+        startActivity(intent);
+        finish();
+        }
         });
-     /*******************************************************/
+         /*******************************************************/
 
-        dr=getResources().getDrawable(R.drawable.back_arrow);
+        dr = getResources().getDrawable(R.drawable.back_arrow);
 
         passtoggle.setOnCheckedChangeListener(this);
         setSupportActionBar(toolbar);
@@ -75,38 +75,43 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
 
         signup_mem.setOnClickListener(this);
     }
-    void initalization()
-    {
-        passtoggle=findViewById(R.id.pass_toggle);
-        m_name=findViewById(R.id.m_name);
-        m_email=findViewById(R.id.m_email);
-        m_charity_email=findViewById(R.id.m_charityemail);
-        m_mobile=findViewById(R.id.m_mobile);
-        m_pass=findViewById(R.id.pass_member);
-        toolbar = findViewById(R.id.toolbar);
-        signup_mem= findViewById(R.id.signup_btn_mem);
 
-        member_user=new signup_data_model();
+    void initalization() {
+        passtoggle = findViewById(R.id.pass_toggle);
+        m_name = findViewById(R.id.m_name);
+        m_email = findViewById(R.id.m_email);
+        m_charity_email = findViewById(R.id.m_charityemail);
+        m_mobile = findViewById(R.id.m_mobile);
+        m_pass = findViewById(R.id.pass_member);
+        toolbar = findViewById(R.id.toolbar);
+        signup_mem = findViewById(R.id.signup_btn_mem);
+
+        member_user = new signup_data_model();
+
+        apIinterface = Retroclient.retroinit();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Processing...");
     }
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         passtoogler p = new passtoogler();
-        p.tooglevisiblity(isChecked,m_pass);
+        p.tooglevisiblity(isChecked, m_pass);
     }
 
     @Override
     public void onClick(View v) {
-        usertype="member";
-        name=m_name.getText().toString();
-        email=m_email.getText().toString();
-        pass=m_pass.getText().toString();
-        mobile=m_mobile.getText().toString();
-        charityemail=m_charity_email.getText().toString();
+        usertype = "member";
+        name = m_name.getText().toString();
+        email = m_email.getText().toString();
+        pass = m_pass.getText().toString();
+        mobile = m_mobile.getText().toString();
+        charityemail = m_charity_email.getText().toString();
 
-        if (name.length() == 0 || email.length() == 0 || mobile.length() == 0 || pass.length() == 0 || charityemail.length()==0) {
+        if (name.length() == 0 || email.length() == 0 || mobile.length() == 0 || pass.length() == 0 || charityemail.length() == 0) {
             Toast.makeText(this, "Enter all details", Toast.LENGTH_LONG).show();
-        }
-        else{
+        } else {
+            progressDialog.show();
             member_user.setName(name);
             member_user.setEmail(email);
             member_user.setPass(pass);
@@ -114,21 +119,23 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
             member_user.setMobile(mobile);
             member_user.setUsertype(usertype);
 
-            Call<signup_response> c =apIinterface.signup_member(member_user);
+            Call<signup_response> c = apIinterface.signup_member(member_user);
             c.enqueue(new Callback<signup_response>() {
                 @Override
                 public void onResponse(Call<signup_response> call, Response<signup_response> response) {
-                    if(response.code()==400)
-                    {
-                        Toast.makeText(signup_member.this,"signup failed",Toast.LENGTH_LONG).show();
+                    if (response.code() == 400) {
+                        progressDialog.dismiss();
+                        Toast.makeText(signup_member.this, "signup failed", Toast.LENGTH_LONG).show();
+                    } else if (response.code() == 200) {
+                        progressDialog.dismiss();
+                        Toast.makeText(signup_member.this, "signup success", Toast.LENGTH_LONG).show();
                     }
-                    else if(response.code()==200)
-                        Toast.makeText(signup_member.this,"signup success",Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void onFailure(Call<signup_response> call, Throwable t) {
-                    Toast.makeText(signup_member.this,"Failure",Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                    Toast.makeText(signup_member.this, "Failure", Toast.LENGTH_LONG).show();
 
                 }
             });

@@ -3,6 +3,7 @@ package com.infotech.wedonate.ui.signup_module;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -34,11 +35,12 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
     CheckBox passtoggle;
     Toolbar toolbar;
     EditText d_pass, d_name, d_email, d_mobile;
-    Drawable dr;
+    Drawable dr, loader;
     Button signup;
     String name, email, pass, mobile, usertype;
     signup_data_model donor_user;
     APIinterface apIinterface;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_signup_donor);
 
         initalization();
-        apIinterface = Retroclient.retroinit();
+
 
         passtoggle.setOnCheckedChangeListener(this);
         setSupportActionBar(toolbar);
@@ -77,6 +79,10 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
         donor_user = new signup_data_model();
 
         dr = getResources().getDrawable(R.drawable.back_arrow);
+
+        apIinterface = Retroclient.retroinit();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Processing...");
     }
 
     @Override
@@ -88,6 +94,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
     @Override
     public void onClick(View v) {
 
+
         usertype = "donor";
         name = d_name.getText().toString();
         email = d_email.getText().toString();
@@ -96,6 +103,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
         if (name.length() == 0 || email.length() == 0 || mobile.length() == 0 || pass.length() == 0) {
             Toast.makeText(this, "Enter all details", Toast.LENGTH_LONG).show();
         } else {
+           // progressDialog.show();
             donor_user.setName(name);
             donor_user.setEmail(email);
             donor_user.setMobile(mobile);
@@ -109,19 +117,24 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
                 @Override
                 public void onResponse(Call<signup_response> call, Response<signup_response> response) {
 
-                    if(response.code()==400)
-                    {
-                        Toast.makeText(signup_donor.this,"signup failed",Toast.LENGTH_LONG).show();
+                    if (response.code() == 400 || response.code() == 401 ){
+                        progressDialog.dismiss();
+                        Toast.makeText(signup_donor.this, "signup failed", Toast.LENGTH_LONG).show();
+
+                    } else if(response.code()==200){
+                       Intent i = new Intent(signup_donor.this,otp_verify_screen.class);
+                       i.putExtra("email",email);
+                       i.putExtra("usertype",usertype);
+                       startActivity(i);
                     }
-                    else if(response.code()==200)
-                        Toast.makeText(signup_donor.this,"signup success",Toast.LENGTH_LONG).show();
                 }
+
 
                 @Override
                 public void onFailure(Call<signup_response> call, Throwable t) {
-                   // Log.d("api",t.toString());
-                    Toast.makeText(signup_donor.this,"Failure",Toast.LENGTH_LONG).show();
-
+                    // Log.d("api",t.toString());
+                    Toast.makeText(signup_donor.this, "Server Failure", Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
                 }
             });
         }

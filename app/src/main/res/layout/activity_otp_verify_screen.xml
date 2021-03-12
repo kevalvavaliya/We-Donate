@@ -109,7 +109,9 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="0.07"
+        android:id="@+id/otp_verify_btn"
         android:background="@drawable/otp_button_back"
         android:fontFamily="@font/alatsi_regular"
-        android:text="Verify" />
+        android:text="Verify"
+        android:onClick="verify_otp"/>
 </LinearLayout>
