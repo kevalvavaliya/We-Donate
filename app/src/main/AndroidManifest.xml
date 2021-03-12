@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ui.signup_module.otp_verify_screen"></activity>
+        <activity android:name=".ui.signup_module.otp_verify_screen">
+        </activity>
         <activity android:name=".ui.signup_module.signup_charity" />
         <activity android:name=".ui.signup_module.signup_member" />
         <activity android:name=".ui.signup_module.signup_donor" />

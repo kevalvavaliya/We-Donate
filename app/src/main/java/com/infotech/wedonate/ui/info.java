@@ -12,12 +12,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
+import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.adapter.PagerAdapter;
 import com.infotech.wedonate.ui.infopager.infopage1;
 import com.infotech.wedonate.ui.infopager.infopage2;
 import com.infotech.wedonate.ui.infopager.infopage3;
 import com.infotech.wedonate.user_selector;
+import com.infotech.wedonate.util.Retroclient;
 
 
 public class info extends AppCompatActivity implements View.OnClickListener {
