@@ -41,7 +41,7 @@ public class otp_verify_screen extends AppCompatActivity {
         intent = getIntent();
         email=intent.getStringExtra("email");
         usertype=intent.getStringExtra("usertype");
-        Log.d("email",email);
+        //Log.d("email",email);
 
     }
     void initialization(){
@@ -74,16 +74,16 @@ public class otp_verify_screen extends AppCompatActivity {
             c.enqueue(new Callback<signup_response>() {
                 @Override
                 public void onResponse(Call<signup_response> call, Response<signup_response> response) {
-                    if (response.code() == 400) {
+                    if (response.body().getCode() == 400) {
                         Toast.makeText(otp_verify_screen.this, "verification failed", Toast.LENGTH_LONG).show();
-                    } else if (response.code() == 200) {
+                    } else if (response.body().getCode() == 200) {
                         Toast.makeText(otp_verify_screen.this, "verification success", Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<signup_response> call, Throwable t) {
-
+                    Toast.makeText(otp_verify_screen.this, "Server Failure", Toast.LENGTH_LONG).show();
                 }
             });
 

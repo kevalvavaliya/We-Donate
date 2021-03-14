@@ -110,13 +110,18 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
             c.enqueue(new Callback<signup_response>() {
                 @Override
                 public void onResponse(Call<signup_response> call, Response<signup_response> response) {
-                    if (response.code() == 400) {
+                    if (response.body().getCode() == 400 || response.body().getCode() == 401){
                         progressDialog.dismiss();
-                        Toast.makeText(signup_charity.this, "signup failed", Toast.LENGTH_LONG).show();
-
-                    } else if (response.code() == 200) {
-                        progressDialog.dismiss();
-                        Toast.makeText(signup_charity.this, "signup success", Toast.LENGTH_LONG).show();
+                        if(response.body().getMsg().trim().equalsIgnoreCase("user already exists"))
+                            Toast.makeText(signup_charity.this, "User already exists", Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(signup_charity.this,"Signup Failed",Toast.LENGTH_LONG).show();
+                    } else if(response.body().getCode()==200){
+                        Intent i = new Intent(signup_charity.this,otp_verify_screen.class);
+                        i.putExtra("email",email);
+                        i.putExtra("usertype",usertype);
+                        startActivity(i);
+                        finish();
                     }
 
                 }
