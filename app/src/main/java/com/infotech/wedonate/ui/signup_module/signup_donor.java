@@ -93,8 +93,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
 
     @Override
     public void onClick(View v) {
-
-
+        progressDialog.show();
         usertype = "donor";
         name = d_name.getText().toString();
         email = d_email.getText().toString();
@@ -116,20 +115,22 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
             c.enqueue(new Callback<signup_response>() {
                 @Override
                 public void onResponse(Call<signup_response> call, Response<signup_response> response) {
-
-                    if (response.code() == 400 || response.code() == 401 ){
+                    //Log.d("mylog",response.body().getCode()+"");
+                    if (response.body().getCode() == 400 || response.body().getCode() == 401){
                         progressDialog.dismiss();
-                        Toast.makeText(signup_donor.this, "signup failed", Toast.LENGTH_LONG).show();
-
-                    } else if(response.code()==200){
+                        if(response.body().getMsg().trim().equalsIgnoreCase("user already exists"))
+                            Toast.makeText(signup_donor.this, "User already exists", Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(signup_donor.this,"Signup Failed",Toast.LENGTH_LONG).show();
+                    } else if(response.body().getCode()==200){
                        Intent i = new Intent(signup_donor.this,otp_verify_screen.class);
                        i.putExtra("email",email);
                        i.putExtra("usertype",usertype);
                        startActivity(i);
+                       finish();
                     }
+
                 }
-
-
                 @Override
                 public void onFailure(Call<signup_response> call, Throwable t) {
                     // Log.d("api",t.toString());

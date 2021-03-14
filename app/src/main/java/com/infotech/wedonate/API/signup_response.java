@@ -1,8 +1,12 @@
 package com.infotech.wedonate.API;
 
-public class signup_response {
+import com.google.gson.annotations.SerializedName;
 
+public class signup_response {
+    @SerializedName("msg")
     String msg;
+
+    int code;
 
     public void setMsg(String msg) {
         this.msg = msg;
@@ -10,5 +14,21 @@ public class signup_response {
 
     public String getMsg() {
         return msg;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return "signup_response{" +
+                "msg='" + msg + '\'' +
+                ", code=" + code +
+                '}';
     }
 }

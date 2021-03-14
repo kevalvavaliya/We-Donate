@@ -58,7 +58,6 @@ public class info extends AppCompatActivity implements View.OnClickListener {
         if(v.getId()==R.id.signup_btn)
         {
            Intent i = new Intent(this,user_selector.class);
-            Log.d("keval","hello");
             startActivity(i);
         }
     }
