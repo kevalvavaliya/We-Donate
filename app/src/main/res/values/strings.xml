@@ -5,4 +5,9 @@
     <string name="info1">We-Donate brings Digitization in Donation.\n Giving is not just about making a donation,\n Its about \"MAKING A DIFFERENCE\"</string>
     <string name="info2">We-Donate lets you turn your spare time \n into  charitable donations for your favourite \n non-profit or charity organizations.</string>
     <string name="info3">We-Donate delievers your donation to the \n right hands and provides home pickup services.\n \"Lets Spread Happiness\"</string>
+    <string-array name="user">
+        <item>Donor</item>
+        <item>Member</item>
+        <item>Charity</item>
+    </string-array>
 </resources>

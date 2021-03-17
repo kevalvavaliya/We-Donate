@@ -18,6 +18,7 @@ import com.infotech.wedonate.adapter.PagerAdapter;
 import com.infotech.wedonate.ui.infopager.infopage1;
 import com.infotech.wedonate.ui.infopager.infopage2;
 import com.infotech.wedonate.ui.infopager.infopage3;
+import com.infotech.wedonate.ui.login_module.login;
 import com.infotech.wedonate.user_selector;
 import com.infotech.wedonate.util.Retroclient;
 
@@ -51,6 +52,7 @@ public class info extends AppCompatActivity implements View.OnClickListener {
         signup_bt.setBackgroundColor(Color.rgb(230,59,81));
 
         signup_bt.setOnClickListener(this);
+        signin_bt.setOnClickListener(this);
     }
 
     @Override
@@ -58,6 +60,11 @@ public class info extends AppCompatActivity implements View.OnClickListener {
         if(v.getId()==R.id.signup_btn)
         {
            Intent i = new Intent(this,user_selector.class);
+            startActivity(i);
+        }
+        if(v.getId()==R.id.signin_btn)
+        {
+            Intent i = new Intent(this,login.class);
             startActivity(i);
         }
     }
