@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.API.signup_response;
 import com.infotech.wedonate.R;
-import com.infotech.wedonate.data.signup_data_model;
+import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.util.GenericTextWatcher;
 import com.infotech.wedonate.util.Retroclient;
 
@@ -29,7 +28,7 @@ public class otp_verify_screen extends AppCompatActivity {
     EditText[] edit;
     Intent intent;
     String email,usertype,otp;
-    signup_data_model user;
+    data_model user;
     APIinterface apIinterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class otp_verify_screen extends AppCompatActivity {
         otp4=findViewById(R.id.ed4);
         edit =new EditText[]{otp1,otp2,otp3,otp4};
         apIinterface = Retroclient.retroinit();
-        user = new signup_data_model();
+        user = new data_model();
     }
     void cursormovable(){
         otp1.addTextChangedListener(new GenericTextWatcher(otp1,edit));
