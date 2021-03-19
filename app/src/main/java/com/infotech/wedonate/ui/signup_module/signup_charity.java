@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.API.signup_response;
 import com.infotech.wedonate.R;
-import com.infotech.wedonate.data.signup_data_model;
+import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.user_selector;
 import com.infotech.wedonate.util.Retroclient;
 import com.infotech.wedonate.util.passtoogler;
@@ -34,7 +34,7 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
     EditText c_pass, c_name, c_email, c_mobile;
     Drawable dr;
     Button signup_charity_btn;
-    signup_data_model charity_user;
+    data_model charity_user;
     APIinterface apIinterface;
     String name, email, pass, mobile, usertype;
     ProgressDialog progressDialog;
@@ -72,7 +72,7 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
         c_mobile = findViewById(R.id.c_mobile);
         signup_charity_btn = findViewById(R.id.signup_btn_chr);
         toolbar = findViewById(R.id.toolbar);
-        charity_user = new signup_data_model();
+        charity_user = new data_model();
 
         dr = getResources().getDrawable(R.drawable.back_arrow);
 

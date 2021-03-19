@@ -1,6 +1,6 @@
 package com.infotech.wedonate.data;
 
-public class signup_data_model {
+public class data_model {
     public String name, email, pass, mobile,usertype,charityemail,otp;
 
     public void setName(String name) {

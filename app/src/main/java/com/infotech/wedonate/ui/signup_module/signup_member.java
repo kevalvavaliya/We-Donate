@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.API.signup_response;
 import com.infotech.wedonate.R;
-import com.infotech.wedonate.data.signup_data_model;
+import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.user_selector;
 import com.infotech.wedonate.util.Retroclient;
 import com.infotech.wedonate.util.passtoogler;
@@ -35,7 +35,7 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
     String name, email, pass, mobile, usertype, charityemail;
     APIinterface apIinterface;
     Button signup_mem;
-    signup_data_model member_user;
+    data_model member_user;
     ProgressDialog progressDialog;
 
     @Override
@@ -86,7 +86,7 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
         toolbar = findViewById(R.id.toolbar);
         signup_mem = findViewById(R.id.signup_btn_mem);
 
-        member_user = new signup_data_model();
+        member_user = new data_model();
 
         apIinterface = Retroclient.retroinit();
         progressDialog = new ProgressDialog(this);

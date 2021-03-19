@@ -7,8 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,10 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.infotech.wedonate.API.APIinterface;
-import com.infotech.wedonate.API.MyRetrofit;
 import com.infotech.wedonate.API.signup_response;
 import com.infotech.wedonate.R;
-import com.infotech.wedonate.data.signup_data_model;
+import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.user_selector;
 import com.infotech.wedonate.util.Retroclient;
 import com.infotech.wedonate.util.passtoogler;
@@ -28,7 +25,6 @@ import com.infotech.wedonate.util.passtoogler;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class signup_donor extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
@@ -38,7 +34,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
     Drawable dr, loader;
     Button signup;
     String name, email, pass, mobile, usertype;
-    signup_data_model donor_user;
+    data_model donor_user;
     APIinterface apIinterface;
     ProgressDialog progressDialog;
 
@@ -76,7 +72,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
         d_mobile = findViewById(R.id.d_mobile);
         signup = findViewById(R.id.signup_btn_donor);
         toolbar = findViewById(R.id.toolbar);
-        donor_user = new signup_data_model();
+        donor_user = new data_model();
 
         dr = getResources().getDrawable(R.drawable.back_arrow);
 
