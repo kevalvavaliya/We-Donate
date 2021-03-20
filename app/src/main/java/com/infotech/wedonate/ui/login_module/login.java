@@ -2,32 +2,51 @@ package com.infotech.wedonate.ui.login_module;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.infotech.wedonate.API.APIinterface;
+import com.infotech.wedonate.API.signup_response;
 import com.infotech.wedonate.R;
+import com.infotech.wedonate.data.data_model;
+import com.infotech.wedonate.user_selector;
+import com.infotech.wedonate.util.Retroclient;
 
-public class login extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class login extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     ImageView login_gif;
     Spinner login_user_spinner;
     EditText login_email,login_pass;
     Button login_btn;
     TextView register,forgot_pass;
-    String email,pass;
+    String email,pass,usertype;
+    data_model user;
+    APIinterface apIinterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         initalization();
-
+        login_btn.setOnClickListener(this);
+        forgot_pass.setOnClickListener(this);
+        register.setOnClickListener(this);
+        login_user_spinner.setOnItemSelectedListener(this);
 
 
     }
@@ -42,7 +61,73 @@ public class login extends AppCompatActivity {
         Glide.with(this).load(R.drawable.login).into(login_gif);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.user, R.layout.spinner_layout);
         login_user_spinner.setAdapter(adapter);
+        user = new data_model();
+        apIinterface = Retroclient.retroinit();
+    }
 
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.login_btn){
+            email=login_email.getText().toString().trim();
+            pass= login_pass.getText().toString().trim();
+
+            if(email.length()!=0 && pass.length()!=0){
+                user.setEmail(email);
+                user.setPass(pass);
+                user.setUsertype(usertype);
+                Log.d("mylog",usertype);
+                Call<signup_response> c= apIinterface.login(user);
+                c.enqueue(new Callback<signup_response>() {
+                    @Override
+                    public void onResponse(Call<signup_response> call, Response<signup_response> response) {
+                        //Log.d("mylog",response.body().getMsg());
+                        if(response.body().getMsg().equalsIgnoreCase("login success") || response.body().getCode()==200)
+                        {
+                            Toast.makeText(login.this,"login success",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(login.this,"login fail",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<signup_response> call, Throwable t) {
+                        Toast.makeText(login.this,"server failure",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
+            else{
+                Toast.makeText(this,"Enter credentials",Toast.LENGTH_LONG).show();
+            }
+        }
+        if(v.getId()==R.id.register_btn)
+        {
+            Intent i = new Intent(this, user_selector.class);
+            startActivity(i);
+        }
+        if(v.getId()==R.id.forgot_pass){
+            Intent i = new Intent(this,forgotpass.class);
+            startActivity(i);
+
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("mylog",position+"");
+        if(position==0)
+            usertype="donor";
+        else if(position==1)
+            usertype="member";
+        else if(position==2)
+            usertype="charity";
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        Toast.makeText(this,"Choose yourself",Toast.LENGTH_LONG).show();
     }
 }

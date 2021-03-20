@@ -21,4 +21,7 @@ public interface APIinterface {
 
     @POST("/otp_verification")
     Call<signup_response> otp_verification(@Body data_model user);
+
+    @POST("/login")
+    Call<signup_response> login(@Body data_model user);
 }
