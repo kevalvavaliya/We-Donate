@@ -10,4 +10,5 @@
         <item>Member</item>
         <item>Charity</item>
     </string-array>
+    <string name="forgotpass">Enter your email address linked \n to your account</string>
 </resources>
