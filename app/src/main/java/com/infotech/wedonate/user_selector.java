@@ -78,15 +78,18 @@ public class user_selector extends AppCompatActivity implements View.OnClickList
                 case 0:
                     intent = new Intent(this, signup_member.class);
                     startActivity(intent);
+                    finish();
                     break;
                 case 1:
                     intent = new Intent(this, signup_donor.class);
                     startActivity(intent);
+                    finish();
                     break;
 
                 case 2:
                     intent = new Intent(this, signup_charity.class);
                     startActivity(intent);
+                    finish();
                     break;
                 case -1:
                     Toast.makeText(this, "please choose yourself", Toast.LENGTH_LONG).show();

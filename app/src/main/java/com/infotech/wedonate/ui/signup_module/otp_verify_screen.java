@@ -13,6 +13,7 @@ import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.API.signup_response;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_model;
+import com.infotech.wedonate.ui.login_module.login;
 import com.infotech.wedonate.util.GenericTextWatcher;
 import com.infotech.wedonate.util.Retroclient;
 
@@ -76,7 +77,10 @@ public class otp_verify_screen extends AppCompatActivity {
                     if (response.body().getCode() == 400) {
                         Toast.makeText(otp_verify_screen.this, "verification failed", Toast.LENGTH_LONG).show();
                     } else if (response.body().getCode() == 200) {
-                        Toast.makeText(otp_verify_screen.this, "verification success", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(otp_verify_screen.this, "verification success", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(otp_verify_screen.this, login.class);
+                        startActivity(i);
+                        finish();
                     }
                 }
 
