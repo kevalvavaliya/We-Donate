@@ -2,7 +2,7 @@ package com.infotech.wedonate.API;
 
 import com.google.gson.annotations.SerializedName;
 
-public class signup_response {
+public class response {
     @SerializedName("msg")
     String msg;
 

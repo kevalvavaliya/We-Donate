@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.infotech.wedonate.API.APIinterface;
-import com.infotech.wedonate.API.signup_response;
+import com.infotech.wedonate.API.response;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.ui.login_module.login;
@@ -70,10 +70,10 @@ public class otp_verify_screen extends AppCompatActivity {
             user.setOtp(otp);
             user.setUsertype(usertype);
             user.setEmail(email);
-            Call<signup_response> c =apIinterface.otp_verification(user);
-            c.enqueue(new Callback<signup_response>() {
+            Call<response> c =apIinterface.otp_verification(user);
+            c.enqueue(new Callback<response>() {
                 @Override
-                public void onResponse(Call<signup_response> call, Response<signup_response> response) {
+                public void onResponse(Call<response> call, Response<response> response) {
                     if (response.body().getCode() == 400) {
                         Toast.makeText(otp_verify_screen.this, "verification failed", Toast.LENGTH_LONG).show();
                     } else if (response.body().getCode() == 200) {
@@ -85,7 +85,7 @@ public class otp_verify_screen extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<signup_response> call, Throwable t) {
+                public void onFailure(Call<response> call, Throwable t) {
                     Toast.makeText(otp_verify_screen.this, "Server Failure", Toast.LENGTH_LONG).show();
                 }
             });

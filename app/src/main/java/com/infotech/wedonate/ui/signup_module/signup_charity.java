@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.infotech.wedonate.API.APIinterface;
-import com.infotech.wedonate.API.signup_response;
+import com.infotech.wedonate.API.response;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.user_selector;
@@ -106,10 +106,10 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
             charity_user.setPass(pass);
             charity_user.setUsertype(usertype);
 
-            Call<signup_response> c = apIinterface.signup_charity(charity_user);
-            c.enqueue(new Callback<signup_response>() {
+            Call<response> c = apIinterface.signup_charity(charity_user);
+            c.enqueue(new Callback<response>() {
                 @Override
-                public void onResponse(Call<signup_response> call, Response<signup_response> response) {
+                public void onResponse(Call<response> call, Response<response> response) {
                     if (response.body().getCode() == 400 || response.body().getCode() == 401){
                         progressDialog.dismiss();
                         if(response.body().getMsg().trim().equalsIgnoreCase("user already exists"))
@@ -127,7 +127,7 @@ public class signup_charity extends AppCompatActivity implements CompoundButton.
                 }
 
                 @Override
-                public void onFailure(Call<signup_response> call, Throwable t) {
+                public void onFailure(Call<response> call, Throwable t) {
                     progressDialog.dismiss();
                     Toast.makeText(signup_charity.this, "server Failure", Toast.LENGTH_LONG).show();
                 }

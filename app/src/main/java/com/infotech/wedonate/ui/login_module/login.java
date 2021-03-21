@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.infotech.wedonate.API.APIinterface;
-import com.infotech.wedonate.API.signup_response;
+import com.infotech.wedonate.API.response;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.user_selector;
@@ -77,10 +77,10 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
                 user.setPass(pass);
                 user.setUsertype(usertype);
                 Log.d("mylog",usertype);
-                Call<signup_response> c= apIinterface.login(user);
-                c.enqueue(new Callback<signup_response>() {
+                Call<response> c= apIinterface.login(user);
+                c.enqueue(new Callback<response>() {
                     @Override
-                    public void onResponse(Call<signup_response> call, Response<signup_response> response) {
+                    public void onResponse(Call<response> call, Response<response> response) {
                         //Log.d("mylog",response.body().getMsg());
                         if(response.body().getMsg().equalsIgnoreCase("login success") || response.body().getCode()==200)
                         {
@@ -92,7 +92,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
                     }
 
                     @Override
-                    public void onFailure(Call<signup_response> call, Throwable t) {
+                    public void onFailure(Call<response> call, Throwable t) {
                         Toast.makeText(login.this,"server failure",Toast.LENGTH_LONG).show();
                     }
                 });
@@ -116,7 +116,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("mylog",position+"");
+        //Log.d("mylog",position+"");
         if(position==0)
             usertype="donor";
         else if(position==1)
