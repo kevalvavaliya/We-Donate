@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:fontFamily="sans-serif"
+        android:padding="20dp"
+        android:text="Login help"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:letterSpacing="0.03"
+        android:text="Find your account"
+        android:textColor="@color/white"
+        android:textSize="35dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:gravity="center|top"
+        android:text="@string/forgotpass"
+        android:textColor="@color/lightgrey"
+        android:textSize="16dp" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.07"
+        android:entries="@array/user"
+        android:background="@drawable/forgot_edittext_default"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="18dp"
+        android:id="@+id/choose_user"
+        />
+    <EditText
+        android:id="@+id/forgot_pass_email"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_weight="0.07"
+        android:hint="Enter your email"
+        android:paddingLeft="12dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/lightgrey"
+        android:textSize="17dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/errormsg"
+        android:textSize="12dp"
+        android:textColor="#9F0303"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:drawableStart="@drawable/error"
+        android:gravity="center_vertical"
+        android:drawablePadding="3dp"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="6dp"
+        />
+    <Button
+        android:id="@+id/forgot_pass_next"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_weight="0.08"
+        android:backgroundTint="#0195f7"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Next"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+</LinearLayout>
