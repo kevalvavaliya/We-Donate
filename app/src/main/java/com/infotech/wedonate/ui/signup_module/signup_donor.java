@@ -122,6 +122,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
                        Intent i = new Intent(signup_donor.this,otp_verify_screen.class);
                        i.putExtra("email",email);
                        i.putExtra("usertype",usertype);
+                       i.putExtra("activity", "signup");
                        startActivity(i);
                        finish();
                     }

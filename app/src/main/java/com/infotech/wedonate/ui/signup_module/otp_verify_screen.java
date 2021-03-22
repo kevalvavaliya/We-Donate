@@ -2,8 +2,10 @@ package com.infotech.wedonate.ui.signup_module;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,9 +30,10 @@ public class otp_verify_screen extends AppCompatActivity {
     Button otp_verify;
     EditText[] edit;
     Intent intent;
-    String email,usertype,otp;
+    String email,usertype,otp,activity,pass;
     data_model user;
     APIinterface apIinterface;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +44,14 @@ public class otp_verify_screen extends AppCompatActivity {
         intent = getIntent();
         email=intent.getStringExtra("email");
         usertype=intent.getStringExtra("usertype");
-        //Log.d("email",email);
+        activity=intent.getStringExtra("activity");
+
+        if(activity.equals("forgotpass"))
+        {
+            pass=intent.getStringExtra("pass");
+            user.setPass(pass);
+        }
+
 
     }
     void initialization(){
@@ -52,6 +62,8 @@ public class otp_verify_screen extends AppCompatActivity {
         edit =new EditText[]{otp1,otp2,otp3,otp4};
         apIinterface = Retroclient.retroinit();
         user = new data_model();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Verifying...");
     }
     void cursormovable(){
         otp1.addTextChangedListener(new GenericTextWatcher(otp1,edit));
@@ -70,14 +82,19 @@ public class otp_verify_screen extends AppCompatActivity {
             user.setOtp(otp);
             user.setUsertype(usertype);
             user.setEmail(email);
+            user.setActivity(activity);
+            progressDialog.show();
             Call<response> c =apIinterface.otp_verification(user);
             c.enqueue(new Callback<response>() {
                 @Override
                 public void onResponse(Call<response> call, Response<response> response) {
+                    Log.d("mylog",response.body().getMsg());
                     if (response.body().getCode() == 400) {
+                        progressDialog.dismiss();
                         Toast.makeText(otp_verify_screen.this, "verification failed", Toast.LENGTH_LONG).show();
                     } else if (response.body().getCode() == 200) {
                        // Toast.makeText(otp_verify_screen.this, "verification success", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                         Intent i = new Intent(otp_verify_screen.this, login.class);
                         startActivity(i);
                         finish();
@@ -86,6 +103,7 @@ public class otp_verify_screen extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<response> call, Throwable t) {
+                    progressDialog.dismiss();
                     Toast.makeText(otp_verify_screen.this, "Server Failure", Toast.LENGTH_LONG).show();
                 }
             });
