@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.login_module.forgotpass"></activity>
-        <activity android:name=".ui.signup_module.otp_verify_screen"></activity>
+        <activity android:name=".ui.login_module.update_password"></activity>
+        <activity android:name=".ui.login_module.forgotpass" />
+        <activity android:name=".ui.signup_module.otp_verify_screen" />
         <activity android:name=".ui.signup_module.signup_charity" />
         <activity android:name=".ui.signup_module.signup_member" />
         <activity android:name=".ui.signup_module.signup_donor" />

@@ -133,6 +133,7 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
                         Intent i = new Intent(signup_member.this,otp_verify_screen.class);
                         i.putExtra("email",email);
                         i.putExtra("usertype",usertype);
+                        i.putExtra("activity", "signup");
                         startActivity(i);
                         finish();
                     }
