@@ -20,6 +20,7 @@ import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.API.response;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_model;
+import com.infotech.wedonate.ui.home_module.donor_home;
 import com.infotech.wedonate.user_selector;
 import com.infotech.wedonate.util.Retroclient;
 
@@ -81,10 +82,18 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
                 c.enqueue(new Callback<response>() {
                     @Override
                     public void onResponse(Call<response> call, Response<response> response) {
-                        //Log.d("mylog",response.body().getMsg());
-                        if(response.body().getMsg().equalsIgnoreCase("login success") || response.body().getCode()==200)
+                        Log.d("mylog",response.body().getMsg());
+                        if(response.body().getMsg().equalsIgnoreCase("login success donor"))
                         {
-                            Toast.makeText(login.this,"login success",Toast.LENGTH_LONG).show();
+                            Intent intent= new Intent(login.this, donor_home.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else if(response.body().getMsg().equalsIgnoreCase("login success member") ){
+
+                        }
+                        else if(response.body().getMsg().equalsIgnoreCase("login success charity")){
+
                         }
                         else{
                             Toast.makeText(login.this,"login fail",Toast.LENGTH_SHORT).show();
@@ -125,7 +134,6 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
             usertype="charity";
 
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         Toast.makeText(this,"Choose yourself",Toast.LENGTH_LONG).show();

@@ -7,7 +7,8 @@ import retrofit2.Retrofit;
 
 public class Retroclient {
 
-    private static String url="http://192.168.43.83:5003";
+   // private static String url="http://192.168.43.83:5000";
+    private static String url="https://py-api-keval.herokuapp.com";
    public static APIinterface retroinit()
     {
       Retrofit retrofit= MyRetrofit.getRetrofit(url);
