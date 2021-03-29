@@ -89,7 +89,6 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
 
     @Override
     public void onClick(View v) {
-        progressDialog.show();
         usertype = "donor";
         name = d_name.getText().toString();
         email = d_email.getText().toString();
@@ -98,7 +97,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
         if (name.length() == 0 || email.length() == 0 || mobile.length() == 0 || pass.length() == 0) {
             Toast.makeText(this, "Enter all details", Toast.LENGTH_LONG).show();
         } else {
-           // progressDialog.show();
+            progressDialog.show();
             donor_user.setName(name);
             donor_user.setEmail(email);
             donor_user.setMobile(mobile);
