@@ -18,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.infotech.wedonate.API.APIinterface;
-import com.infotech.wedonate.API.response;
 import com.infotech.wedonate.R;
+import com.infotech.wedonate.data.data_bank;
 import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.data.user_model;
 import com.infotech.wedonate.ui.home_module.home;
@@ -39,6 +39,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
     TextView register, forgot_pass;
     String email, pass, usertype;
     data_model user;
+    user_model curuser;
     APIinterface apIinterface;
     SharedPreferences.Editor ed;
     SharedPreferences sf;
@@ -92,7 +93,8 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
 
         }
     }
-    void Dologin(){
+
+    void Dologin() {
         email = login_email.getText().toString().trim();
         pass = login_pass.getText().toString().trim();
 
@@ -106,13 +108,18 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
             c.enqueue(new Callback<user_model>() {
                 @Override
                 public void onResponse(Call<user_model> call, Response<user_model> response) {
-                    Log.d("mylog",response.body().getCode()+"");
+                    Log.d("mylog", response.body().getCode() + "");
                     if (response.body().getCode() == 200) {
                         ed = sf.edit();
                         ed.putString("useremail", email);
                         ed.putString("usertype", usertype);
                         ed.commit();
                         if (response.body().getUsertype().equalsIgnoreCase("donor")) {
+                            curuser= new user_model();
+                            curuser.setName(response.body().getName());
+                            curuser.setEmail(response.body().getEmail());
+                            curuser.setUsertype(response.body().getUsertype());
+                            data_bank.curUser = curuser;
                             Intent intent = new Intent(login.this, home.class);
                             startActivity(intent);
                             finish();
@@ -129,8 +136,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
                         } else {
                             Toast.makeText(login.this, "login fail", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else {
+                    } else {
                         Toast.makeText(login.this, "login fail", Toast.LENGTH_SHORT).show();
                     }
                 }
