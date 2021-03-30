@@ -2,7 +2,7 @@ package com.infotech.wedonate.data;
 
 public class user_model {
    private String name,email,usertype;
-
+    int code;
     public int getCode() {
         return code;
     }
@@ -11,7 +11,6 @@ public class user_model {
         this.code = code;
     }
 
-    int code;
 
     public void setName(String name) {
         this.name = name;

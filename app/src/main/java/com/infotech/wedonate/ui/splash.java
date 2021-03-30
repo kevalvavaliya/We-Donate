@@ -20,7 +20,6 @@ import retrofit2.Response;
 public class splash extends AppCompatActivity implements  Runnable{
 
     Handler h;
-    APIinterface apIinterface;
     SharedPreferences sf;
     String email,usertype;
     @Override
@@ -28,8 +27,6 @@ public class splash extends AppCompatActivity implements  Runnable{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //Connecting to database
-        apIinterface = Retroclient.retroinit();
 
         h = new Handler();
         h.postDelayed(this,3000);
