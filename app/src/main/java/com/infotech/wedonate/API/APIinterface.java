@@ -1,6 +1,7 @@
 package com.infotech.wedonate.API;
 
 import com.infotech.wedonate.data.data_model;
+import com.infotech.wedonate.data.user_model;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,7 +24,7 @@ public interface APIinterface {
     Call<response> otp_verification(@Body data_model user);
 
     @POST("/login")
-    Call<response> login(@Body data_model user);
+    Call<user_model> login(@Body data_model user);
 
     @POST("/find_accnt")
     Call<response> find_accnt(@Body data_model user);
