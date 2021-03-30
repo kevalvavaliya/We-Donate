@@ -34,4 +34,16 @@ public class data_model {
     public void setActivity(String activity) {
         this.activity = activity;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsertype() {
+        return usertype;
+    }
 }

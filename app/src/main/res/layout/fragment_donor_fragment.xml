@@ -1,21 +1,14 @@
-<LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:layout_weight="2"
-    android:background="#FFF"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1.9"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:paddingLeft="22dp"
     android:paddingTop="10dp"
     android:paddingRight="22dp"
     android:paddingBottom="10dp"
-    android:weightSum="3">
+    android:weightSum="3"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
         android:layout_width="match_parent"
@@ -339,10 +332,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:background="@color/tomato"/>
 </LinearLayout>
