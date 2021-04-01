@@ -39,7 +39,6 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
     TextView register, forgot_pass;
     String email, pass, usertype;
     data_model user;
-    user_model curuser;
     APIinterface apIinterface;
     SharedPreferences.Editor ed;
     SharedPreferences sf;
@@ -74,6 +73,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
 
 
         sf = getSharedPreferences("Login", MODE_PRIVATE);
+        data_bank.curUser = new user_model();
 
     }
 
@@ -113,22 +113,35 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
                         ed = sf.edit();
                         ed.putString("useremail", email);
                         ed.putString("usertype", usertype);
-                        ed.commit();
+
                         if (response.body().getUsertype().equalsIgnoreCase("donor")) {
-                            curuser= new user_model();
-                            curuser.setName(response.body().getName());
-                            curuser.setEmail(response.body().getEmail());
-                            curuser.setUsertype(response.body().getUsertype());
-                            data_bank.curUser = curuser;
+                            ed.putString("username", response.body().getName());
+
+                            data_bank.curUser.setEmail(response.body().getEmail());
+                            data_bank.curUser.setName(response.body().getName());
+                            data_bank.curUser.setUsertype(response.body().getUsertype());
+
                             Intent intent = new Intent(login.this, home.class);
                             startActivity(intent);
                             finish();
                         } else if (response.body().getUsertype().equalsIgnoreCase("member")) {
+                            ed.putString("username", response.body().getName());
+
+                            data_bank.curUser.setEmail(response.body().getEmail());
+                            data_bank.curUser.setName(response.body().getName());
+                            data_bank.curUser.setUsertype(response.body().getUsertype());
+
                             Intent intent = new Intent(login.this, home.class);
                             startActivity(intent);
                             finish();
 
                         } else if (response.body().getUsertype().equalsIgnoreCase("charity")) {
+                            ed.putString("username", response.body().getName());
+
+                            data_bank.curUser.setEmail(response.body().getEmail());
+                            data_bank.curUser.setName(response.body().getName());
+                            data_bank.curUser.setUsertype(response.body().getUsertype());
+
                             Intent intent = new Intent(login.this, home.class);
                             startActivity(intent);
                             finish();
@@ -136,6 +149,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
                         } else {
                             Toast.makeText(login.this, "login fail", Toast.LENGTH_SHORT).show();
                         }
+                        ed.commit();
                     } else {
                         Toast.makeText(login.this, "login fail", Toast.LENGTH_SHORT).show();
                     }
@@ -161,7 +175,6 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
             usertype = "member";
         else if (position == 2)
             usertype = "charity";
-
     }
 
     @Override

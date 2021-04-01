@@ -21,6 +21,7 @@
         android:text="Hello, Keval"
         android:textColor="@color/black"
         android:textSize="34dp"
+        android:id="@+id/user_name"
         android:textStyle="bold" />
 
     <TextView
@@ -42,6 +43,7 @@
         android:backgroundTint="#ffd91d"
         android:elevation="300dp"
         android:paddingBottom="10dp"
+        android:id="@+id/request_donation"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -50,7 +52,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.3"
             android:fontFamily="@font/alatsi_regular"
-            android:text="Donations"
+            android:text="Request Donations"
             android:gravity="center"
             android:textColor="#a54c00"
             android:textSize="28dp"
@@ -81,7 +83,6 @@
             android:text="Categories"
             android:textColor="@color/black"
             android:textSize="22dp"
-
             android:textStyle="bold" />
 
         <LinearLayout
@@ -91,14 +92,16 @@
             android:padding="8dp"
             android:weightSum="1">
 
+
+
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/cardview_back"
-                android:backgroundTint="#f09561"
-                android:padding="8dp">
+                android:backgroundTint="#62d8f1"
+                android:padding="8dp"
+                android:weightSum="2">
 
                 <ImageView
                     android:layout_width="0dp"
@@ -119,10 +122,10 @@
                         android:layout_weight="0.5"
                         android:fontFamily="@font/alatsi_regular"
                         android:gravity="bottom"
-                        android:text="Amenities"
+                        android:text="Your Donations"
                         android:textAlignment="center"
                         android:textColor="#252742"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -131,68 +134,9 @@
                         android:layout_weight="0.25"
                         android:fontFamily="@font/alatsi_regular"
                         android:gravity="center|top"
-                        android:text="-Save poor"
-                        android:textColor="#882b00"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="0dp"
-                        android:layout_gravity="right"
-                        android:layout_weight="0.25"
-                        android:background="@drawable/cardview_textview_round"
-                        android:backgroundTint="#882b00"
-                        android:padding="7dp"
-                        android:src="@drawable/forward_arrow" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0.5"
-                android:background="@drawable/cardview_back"
-                android:backgroundTint="#62d8f1"
-                android:padding="8dp"
-                android:weightSum="2">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/health" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:weightSum="1">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5"
-                        android:fontFamily="@font/alatsi_regular"
-                        android:gravity="bottom"
-                        android:text="Health"
-                        android:textAlignment="center"
-                        android:textColor="#252742"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.25"
-                        android:fontFamily="@font/alatsi_regular"
-                        android:gravity="center|top"
-                        android:text="-Save Life"
+                        android:text="-list of your donations"
                         android:textColor="#00557e"
-                        android:textSize="12dp"
+                        android:textSize="13dp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -228,7 +172,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/nature" />
+                    android:src="@drawable/recieved_donation" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -243,7 +187,7 @@
                         android:layout_weight="0.5"
                         android:fontFamily="@font/alatsi_regular"
                         android:gravity="bottom"
-                        android:text="Nature"
+                        android:text="Recieved"
                         android:textAlignment="center"
                         android:textColor="#252742"
                         android:textSize="16dp"
@@ -255,7 +199,7 @@
                         android:layout_weight="0.25"
                         android:fontFamily="@font/alatsi_regular"
                         android:gravity="center|top"
-                        android:text="-Save Home"
+                        android:text="-Donations"
                         android:textColor="#2e7b4e"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -287,7 +231,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/education" />
+                    android:src="@drawable/delete_donation" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -302,7 +246,7 @@
                         android:layout_weight="0.5"
                         android:fontFamily="@font/alatsi_regular"
                         android:gravity="bottom"
-                        android:text="Education"
+                        android:text="Remove"
                         android:textAlignment="center"
                         android:textColor="#252742"
                         android:textSize="14dp"
@@ -314,9 +258,9 @@
                         android:layout_weight="0.25"
                         android:fontFamily="@font/alatsi_regular"
                         android:gravity="center|top"
-                        android:text="-Save Culture"
+                        android:text="-Donations"
                         android:textColor="#9b0073"
-                        android:textSize="10dp"
+                        android:textSize="12dp"
                         android:textStyle="bold" />
 
                     <ImageView
