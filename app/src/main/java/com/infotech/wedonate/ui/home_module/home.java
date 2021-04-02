@@ -32,6 +32,10 @@ public class home extends AppCompatActivity {
         }
 
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
