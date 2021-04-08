@@ -8,8 +8,8 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface APIinterface {
-    @POST("/connect")
-    Call<String> connect();
+   /* @POST("/connect")
+    Call<String> connect();*/
 
     @POST("/signup_donor")
     Call<response> signup_donor(@Body data_model donor);
@@ -28,4 +28,10 @@ public interface APIinterface {
 
     @POST("/find_accnt")
     Call<response> find_accnt(@Body data_model user);
+
+    @POST("/check_profile")
+    Call<String> check_profile(@Body data_model user);
+
+    @POST("/setaddress")
+    Call<String> setaddress(@Body data_model user);
 }

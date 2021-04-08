@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotech.wedonate.API.APIinterface;
@@ -37,6 +38,7 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
     Button signup_mem;
     data_model member_user;
     ProgressDialog progressDialog;
+    TextView toolbar_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
         m_mobile = findViewById(R.id.m_mobile);
         m_pass = findViewById(R.id.pass_member);
         toolbar = findViewById(R.id.toolbar);
+        toolbar_text= findViewById(R.id.toolbar_text);
         signup_mem = findViewById(R.id.signup_btn_mem);
 
         member_user = new data_model();
@@ -91,6 +94,8 @@ public class signup_member extends AppCompatActivity implements CompoundButton.O
         apIinterface = Retroclient.retroinit();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Processing...");
+        toolbar_text.setText("Signup");
+
     }
 
     @Override

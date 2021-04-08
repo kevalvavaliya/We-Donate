@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Signup"
+        android:id="@+id/toolbar_text"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:gravity="center_vertical"

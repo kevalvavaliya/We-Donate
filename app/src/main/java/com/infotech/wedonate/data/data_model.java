@@ -1,7 +1,7 @@
 package com.infotech.wedonate.data;
 
 public class data_model {
-    public String name, email, pass, mobile,usertype,charityemail,otp,activity;
+    public String name, email, pass, mobile,usertype,charityemail,otp,activity,address;
 
     public void setName(String name) {
         this.name = name;
@@ -45,5 +45,13 @@ public class data_model {
 
     public String getUsertype() {
         return usertype;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

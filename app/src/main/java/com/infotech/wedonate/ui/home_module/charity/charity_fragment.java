@@ -1,4 +1,4 @@
-package com.infotech.wedonate.ui.home_module;
+package com.infotech.wedonate.ui.home_module.charity;
 
 import android.content.Intent;
 import android.os.Bundle;
