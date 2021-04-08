@@ -1,7 +1,7 @@
 package com.infotech.wedonate.data;
 
 public class user_model {
-   private String name,email,usertype;
+   private String name,email,usertype,mobile,address;
     int code;
     public int getCode() {
         return code;
@@ -34,5 +34,13 @@ public class user_model {
 
     public String getUsertype() {
         return usertype;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

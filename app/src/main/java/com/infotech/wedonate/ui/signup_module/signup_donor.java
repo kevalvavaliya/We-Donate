@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotech.wedonate.API.APIinterface;
@@ -37,7 +38,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
     data_model donor_user;
     APIinterface apIinterface;
     ProgressDialog progressDialog;
-
+    TextView toolbar_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +49,6 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
 
         passtoggle.setOnCheckedChangeListener(this);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(dr);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +70,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
         d_mobile = findViewById(R.id.d_mobile);
         signup = findViewById(R.id.signup_btn_donor);
         toolbar = findViewById(R.id.toolbar);
+        toolbar_text=findViewById(R.id.toolbar_text);
         donor_user = new data_model();
 
         dr = getResources().getDrawable(R.drawable.back_arrow);
@@ -79,6 +78,7 @@ public class signup_donor extends AppCompatActivity implements CompoundButton.On
         apIinterface = Retroclient.retroinit();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Processing...");
+        toolbar_text.setText("Signup");
     }
 
     @Override
