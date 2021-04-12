@@ -44,6 +44,7 @@
         android:elevation="300dp"
         android:paddingBottom="10dp"
         android:orientation="vertical"
+        android:id="@+id/donor_donate"
         android:weightSum="1">
 
         <TextView

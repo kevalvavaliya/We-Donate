@@ -9,16 +9,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_bank;
 
-public class donor_fragment extends Fragment {
+public class donor_fragment extends Fragment implements View.OnClickListener {
 
     TextView user_name;
     String username;
     View view;
+    LinearLayout donor_donate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -26,11 +28,14 @@ public class donor_fragment extends Fragment {
          view= inflater.inflate(R.layout.fragment_donor_home, container, false);
 
         intialization();
+
         return view;
     }
 
     void intialization(){
         user_name = view.findViewById(R.id.user_name);
+        donor_donate=view.findViewById(R.id.donor_donate);
+
 
         String uname = data_bank.curUser.getName();
         int index = uname.indexOf(" ");
@@ -38,6 +43,15 @@ public class donor_fragment extends Fragment {
 
         user_name.setText(username);
 
+        donor_donate.setOnClickListener(this);
+
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.donor_donate)
+        {
+            
+        }
+    }
 }

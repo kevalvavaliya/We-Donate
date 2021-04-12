@@ -6,25 +6,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
-import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_bank;
 import com.infotech.wedonate.data.data_model;
-import com.infotech.wedonate.data.user_model;
 import com.infotech.wedonate.ui.home_module.home;
-import com.infotech.wedonate.util.Retroclient;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class splash extends AppCompatActivity implements  Runnable{
 
     Handler h;
     SharedPreferences sf;
-    String email,usertype,name,mobile;
+    String email,usertype,name,mobile,address;
     data_model CurentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +29,7 @@ public class splash extends AppCompatActivity implements  Runnable{
         email=sf.getString("useremail","nodata");
         name=sf.getString("username","nodata");
         mobile=sf.getString("mobile","nodata");
-
+        address=sf.getString("address","nodata");
         h = new Handler();
         h.postDelayed(this,3000);
 
@@ -71,6 +63,8 @@ public class splash extends AppCompatActivity implements  Runnable{
         CurentUser.setUsertype(usertype);
         CurentUser.setName(name);
         CurentUser.setMobile(mobile);
+        CurentUser.setAddress(address);
+
         data_bank.curUser=CurentUser;
         if(usertype.equals("donor"))
         {

@@ -11,4 +11,11 @@
         <item>Charity</item>
     </string-array>
     <string name="forgotpass">Enter your email address and choose your \n usertype linked to your account</string>
+    <string-array name="category">
+        <item>--Category--</item>
+        <item>Health</item>
+        <item>Food and Cloth</item>
+        <item>Education</item>
+        <item>Nature</item>
+    </string-array>
 </resources>

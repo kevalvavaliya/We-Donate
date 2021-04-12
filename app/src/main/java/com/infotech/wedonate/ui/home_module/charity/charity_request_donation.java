@@ -6,9 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,8 @@ public class charity_request_donation extends AppCompatActivity {
     APIinterface apIinterface;
     data_model user;
     String email;
+    SharedPreferences sf;
+    SharedPreferences.Editor ed;
     int flg=0;
 
     @Override
@@ -72,39 +76,40 @@ public class charity_request_donation extends AppCompatActivity {
 
     void setfragment() {
         email = data_bank.curUser.getEmail();
-        boolean ch = isprofilecomplete();
+        isprofilecomplete();
 
     }
 
-    boolean isprofilecomplete() {
+  void isprofilecomplete() {
 
         user.setEmail(email);
         user.setUsertype("charity");
-        Call<String> c = apIinterface.check_profile(user);
-        c.enqueue(new Callback<String>() {
+        Call<data_model> c = apIinterface.check_profile(user);
+//        Log.d("check",data_bank.curUser.address);
+        c.enqueue(new Callback<data_model>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.body().equals("true")) {
-                    ft.replace(R.id.request_donation_frm, new generate_request());
-                    ft.commit();
-                    flg=1;
-                } else {
+            public void onResponse(Call<data_model> call, Response<data_model> response) {
+                if (response.body().getCode()==400) {
                     ft.replace(R.id.request_donation_frm, new setup_profile());
                     ft.commit();
+
+                } else if(response.body().getCode()==200){
+                    ft.replace(R.id.request_donation_frm, new generate_request());
+                    data_bank.curUser.setAddress(response.body().getAddress());
+                    sf = getSharedPreferences("Login", MODE_PRIVATE);
+                    ed = sf.edit();
+
+                    ed.putString("address",response.body().getAddress());
+                    ft.commit();
+
+
                 }
-
             }
-
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<data_model> call, Throwable t) {
                 Toast.makeText(charity_request_donation.this, "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
-        if(flg==1){
-            return true;
-        }
-        else
-            return false;
 
     }
 
