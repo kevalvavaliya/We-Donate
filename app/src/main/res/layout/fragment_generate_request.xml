@@ -1,14 +1,143 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home_module.charity.generate_request">
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    android:paddingTop="7dp"
+    android:weightSum="1">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:orientation="vertical"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:weightSum="1">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="40dp"
+            android:layout_weight="0.2"
+            android:fontFamily="@font/alatsi_regular"
+            android:gravity="center"
+            android:text="Request Donations"
+            android:textColor="@color/brown"
+            android:textSize="34dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.13"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="#F3DA81"
+            android:hint="Charity Name"
+            android:padding="3dp"
+            android:textColorHint="#6B4541"
+            app:hintTextColor="#6B4541">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/req_charity_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/brown"
+                android:defaultFocusHighlightEnabled="false"
+                android:text="keval"
+                android:textColor="@color/brown"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+<com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.13"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="#F3DA81"
+            android:hint="Charity Mobile"
+            android:padding="3dp"
+            android:textColorHint="#6B4541"
+            app:hintTextColor="#6B4541">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/req_charity_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/brown"
+                android:defaultFocusHighlightEnabled="false"
+                android:text="1234567890"
+                android:textColor="@color/brown"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.13"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="#F3DA81"
+            android:hint="Item Name"
+            android:padding="3dp"
+            android:textColorHint="#6B4541"
+            app:hintTextColor="#6B4541">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/req_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/brown"
+                android:textColor="@color/brown"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/category_req"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.13"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="#F3DA81" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="0.13"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="#F3DA81"
+            android:hint="Item description"
+            android:padding="3dp"
+            android:textColorHint="#6B4541"
+            app:hintTextColor="#6B4541">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/req_item_desc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/brown"
+                android:textColor="@color/brown"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/req_gen"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.11"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="@color/brown"
+            android:fontFamily="@font/alatsi_regular"
+            android:text="Generate Request"
+            android:textSize="14dp" />
+    </LinearLayout>
+</LinearLayout>

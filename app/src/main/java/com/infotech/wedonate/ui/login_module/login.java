@@ -21,7 +21,6 @@ import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_bank;
 import com.infotech.wedonate.data.data_model;
-import com.infotech.wedonate.data.user_model;
 import com.infotech.wedonate.ui.home_module.home;
 import com.infotech.wedonate.user_selector;
 import com.infotech.wedonate.util.Retroclient;
@@ -104,11 +103,11 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
             user.setUsertype(usertype);
 
 
-            Call<user_model> c = apIinterface.login(user);
-            c.enqueue(new Callback<user_model>() {
+            Call<data_model> c = apIinterface.login(user);
+            c.enqueue(new Callback<data_model>() {
                 @Override
-                public void onResponse(Call<user_model> call, Response<user_model> response) {
-                    Log.d("mylog", response.body().getCode() + "");
+                public void onResponse(Call<data_model> call, Response<data_model> response) {
+                   // Log.d("mylog", response.body().getCode() + "");
                     if (response.body().getCode() == 200) {
                         ed = sf.edit();
                         ed.putString("useremail", email);
@@ -159,7 +158,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
                 }
 
                 @Override
-                public void onFailure(Call<user_model> call, Throwable t) {
+                public void onFailure(Call<data_model> call, Throwable t) {
                     Toast.makeText(login.this, "server failure", Toast.LENGTH_LONG).show();
                 }
             });

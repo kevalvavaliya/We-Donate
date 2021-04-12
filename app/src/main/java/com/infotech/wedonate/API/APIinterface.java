@@ -1,7 +1,6 @@
 package com.infotech.wedonate.API;
 
 import com.infotech.wedonate.data.data_model;
-import com.infotech.wedonate.data.user_model;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -24,14 +23,17 @@ public interface APIinterface {
     Call<response> otp_verification(@Body data_model user);
 
     @POST("/login")
-    Call<user_model> login(@Body data_model user);
+    Call<data_model> login(@Body data_model user);
 
     @POST("/find_accnt")
     Call<response> find_accnt(@Body data_model user);
 
     @POST("/check_profile")
-    Call<String> check_profile(@Body data_model user);
+    Call<data_model> check_profile(@Body data_model user);
 
     @POST("/setaddress")
     Call<String> setaddress(@Body data_model user);
+
+    @POST("/request_donation")
+    Call<String> request_donation(@Body data_model req_donation);
 }
