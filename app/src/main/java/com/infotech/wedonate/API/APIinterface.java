@@ -1,6 +1,9 @@
 package com.infotech.wedonate.API;
 
 import com.infotech.wedonate.data.data_model;
+import com.infotech.wedonate.data.donation_model;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -36,4 +39,7 @@ public interface APIinterface {
 
     @POST("/request_donation")
     Call<String> request_donation(@Body data_model req_donation);
+
+    @POST("/fetch_donation_list")
+    Call<ArrayList<donation_model>> fetch_donation_list();
 }

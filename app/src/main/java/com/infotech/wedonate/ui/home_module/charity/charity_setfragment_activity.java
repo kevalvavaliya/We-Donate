@@ -19,6 +19,7 @@ import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_bank;
 import com.infotech.wedonate.data.data_model;
+import com.infotech.wedonate.ui.home_module.donor.donate;
 import com.infotech.wedonate.ui.home_module.home;
 import com.infotech.wedonate.ui.home_module.setup_profile;
 import com.infotech.wedonate.util.Retroclient;
@@ -27,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class charity_request_donation extends AppCompatActivity {
+public class charity_setfragment_activity extends AppCompatActivity {
     Toolbar toolbar;
     TextView toolbar_text;
     Drawable dr;
@@ -38,7 +39,6 @@ public class charity_request_donation extends AppCompatActivity {
     String email;
     SharedPreferences sf;
     SharedPreferences.Editor ed;
-    int flg=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class charity_request_donation extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(charity_request_donation.this, home.class);
+                Intent intent = new Intent(charity_setfragment_activity.this, home.class);
                 startActivity(intent);
             }
         });
@@ -75,13 +75,19 @@ public class charity_request_donation extends AppCompatActivity {
     }
 
     void setfragment() {
-        email = data_bank.curUser.getEmail();
-        isprofilecomplete();
+        if(data_bank.curUser.getAddress()==null) {
+            isprofilecomplete();
+        }
+        else{
+            ft.replace(R.id.donor_donation_frm, new donate());
+            ft.commit();
+        }
+
 
     }
 
   void isprofilecomplete() {
-
+      email = data_bank.curUser.getEmail();
         user.setEmail(email);
         user.setUsertype("charity");
         Call<data_model> c = apIinterface.check_profile(user);
@@ -107,7 +113,7 @@ public class charity_request_donation extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<data_model> call, Throwable t) {
-                Toast.makeText(charity_request_donation.this, "Server Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(charity_setfragment_activity.this, "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -55,7 +55,7 @@ public class profile extends Fragment implements View.OnClickListener {
         pr_username= view.findViewById(R.id.pr_username);
         user = new data_model();
         address.setEnabled(false);
-        save.setVisibility(View.INVISIBLE);
+        save.setVisibility(View.GONE);
         apIinterface = Retroclient.retroinit();
         sf = this.getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         ed = sf.edit();

@@ -32,7 +32,7 @@ public class charity_fragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent;
         if(v.getId() == R.id.request_donation){
-            intent = new Intent(getActivity(),charity_request_donation.class);
+            intent = new Intent(getActivity(), charity_setfragment_activity.class);
             startActivity(intent);
         }
     }
