@@ -7,6 +7,33 @@ public class donation_model {
     String item_desc;
     String item_category;
     String code;
+    String time;
+    String charity_email;
+    String charity_mobile;
+
+    public String getCharity_email() {
+        return charity_email;
+    }
+
+    public void setCharity_email(String charity_email) {
+        this.charity_email = charity_email;
+    }
+
+    public String getCharity_mobile() {
+        return charity_mobile;
+    }
+
+    public void setCharity_mobile(String charity_mobile) {
+        this.charity_mobile = charity_mobile;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getCharity_name() {
         return charity_name;

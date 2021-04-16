@@ -3,7 +3,8 @@
     package="com.infotech.wedonate">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home_module.donor.donor_setfragment_activity"></activity>
+        <activity android:name=".ui.home_module.donor.donor_setfragment_activity" />
         <activity android:name=".ui.home_module.charity.charity_setfragment_activity" />
         <activity android:name=".ui.home_module.home" />
         <activity android:name=".ui.login_module.update_password" />

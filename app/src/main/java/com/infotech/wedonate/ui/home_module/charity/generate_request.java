@@ -115,7 +115,7 @@ public class generate_request extends Fragment implements AdapterView.OnItemSele
                         Toast.makeText(getActivity(),"Request generated",Toast.LENGTH_SHORT).show();
                     else
                         Toast.makeText(getActivity(),"Request failed",Toast.LENGTH_SHORT).show();
-
+                    timerStart();
                 }
 
                 @Override
@@ -128,5 +128,11 @@ public class generate_request extends Fragment implements AdapterView.OnItemSele
         else{
             Toast.makeText(getActivity(), "please complete all fields", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void timerStart() {
+        long req_time = System.currentTimeMillis();
+
+        data_bank.cur_req_end_time.add(req_time);
     }
 }

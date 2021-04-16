@@ -6,14 +6,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_bank;
+import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.ui.home_module.charity.charity_fragment;
 import com.infotech.wedonate.ui.home_module.donor.donor_fragment;
 
@@ -21,18 +21,42 @@ public class home extends AppCompatActivity implements BottomNavigationView.OnNa
     FragmentManager fm;
     FragmentTransaction ft;
     BottomNavigationView btm_nav;
+    SharedPreferences sf;
+    data_model CurentUser;
+    String email,usertype,name,mobile,address;
+    SharedPreferences.Editor ed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //checkuserset();
+        //checkTimeLeft();
         btm_nav = findViewById(R.id.btm_nav);
         btm_nav.setOnNavigationItemSelectedListener(this);
         setfragment();
-
-
-
+        //startService(new Intent(home.this, TimerService.class));
     }
+
+   /* private void checkuserset() {
+        if(data_bank.curUser.getUsertype()==null){
+            CurentUser = new data_model();
+            sf = getSharedPreferences("Login", MODE_PRIVATE);
+            usertype= sf.getString("usertype","nodata");
+            email=sf.getString("useremail","nodata");
+            name=sf.getString("username","nodata");
+            mobile=sf.getString("mobile","nodata");
+            address=sf.getString("address","nodata");
+            CurentUser.setEmail(email);
+            CurentUser.setUsertype(usertype);
+            CurentUser.setName(name);
+            CurentUser.setMobile(mobile);
+            CurentUser.setAddress(address);
+            data_bank.curUser=CurentUser;
+        }
+
+    }*/
+
     void setfragment(){
         fm = getSupportFragmentManager();
         ft=fm.beginTransaction();
@@ -86,4 +110,12 @@ public class home extends AppCompatActivity implements BottomNavigationView.OnNa
         }
         return false;
     }
+//    private void checkTimeLeft() {
+//
+//        for (Long l : data_bank.cur_req_end_time) {
+//            long reqest_time = l + data_bank.finish_time;
+//            long cure = System.currentTimeMillis() /1000;
+//            data_bank.left_time.add(reqest_time - cure);
+//        }
+//    }
 }
