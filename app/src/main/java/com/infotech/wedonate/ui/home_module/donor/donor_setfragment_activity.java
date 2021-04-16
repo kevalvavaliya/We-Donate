@@ -65,7 +65,6 @@ public class donor_setfragment_activity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar_text = findViewById(R.id.toolbar_text);
         toolbar_text.setText("Home");
-        toolbar.setBackgroundColor(getResources().getColor(R.color.cardviewyellow));
         dr = getResources().getDrawable(R.drawable.back_arrow);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(dr);
@@ -78,9 +77,11 @@ public class donor_setfragment_activity extends AppCompatActivity {
 
     void setfragment() {
        if(data_bank.curUser.getAddress()==null) {
+           toolbar.setBackgroundColor(Color.argb(255, 255, 240, 204));
            isprofilecomplete();
        }
        else{
+           toolbar.setBackgroundColor(getResources().getColor(R.color.cardviewyellow));
            ft.replace(R.id.donor_donation_frm, new donate());
            ft.commit();
        }

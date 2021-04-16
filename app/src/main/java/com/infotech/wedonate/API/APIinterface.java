@@ -1,5 +1,6 @@
 package com.infotech.wedonate.API;
 
+import com.infotech.wedonate.data.curLocation;
 import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.data.donation_model;
 
@@ -42,4 +43,7 @@ public interface APIinterface {
 
     @POST("/fetch_donation_list")
     Call<ArrayList<donation_model>> fetch_donation_list();
+
+    @POST("/locations")
+    Call<String> locations(@Body curLocation loc);
 }
