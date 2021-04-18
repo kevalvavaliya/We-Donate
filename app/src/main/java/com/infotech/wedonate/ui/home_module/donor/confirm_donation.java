@@ -3,6 +3,7 @@ package com.infotech.wedonate.ui.home_module.donor;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,7 @@ public class confirm_donation extends Fragment implements View.OnClickListener {
     ArrayList<String> location_coordinates = new ArrayList<>();
     APIinterface apIinterface;
     curLocation curloc;
+    LinearLayout confirm_back;
     TextView charity_name,charity_address,charity_mobile,charity_email,item_category,item_name,item_desc;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +69,7 @@ public class confirm_donation extends Fragment implements View.OnClickListener {
         confirm_donation.setOnClickListener(this);
         apIinterface= Retroclient.retroinit();
         curloc = new curLocation();
+        confirm_back = view.findViewById(R.id.linear_confirm_back);
     }
     void setdata(){
         charity_name.setText(data_bank.donations.get(data_bank.position).getCharity_name());
@@ -75,6 +79,29 @@ public class confirm_donation extends Fragment implements View.OnClickListener {
         item_name.setText(data_bank.donations.get(data_bank.position).getItem_name());
         item_category.setText(data_bank.donations.get(data_bank.position).getItem_category());
         item_desc.setText(data_bank.donations.get(data_bank.position).getItem_desc());
+        if(data_bank.flag_donor_category==0){
+            confirm_back.setBackgroundColor(Color.rgb(255,217,29));
+
+        }
+        else if(data_bank.flag_donor_category==1)
+        {
+            confirm_back.setBackgroundColor(Color.rgb(98,216,241));
+
+        }
+        else if(data_bank.flag_donor_category==2)
+        {
+            confirm_back.setBackgroundColor(Color.rgb(243,102,216));
+
+        }
+        else if(data_bank.flag_donor_category==3)
+        {
+            confirm_back.setBackgroundColor(Color.rgb(240,149,97));
+
+        }
+        else if(data_bank.flag_donor_category==4)
+        {
+            confirm_back.setBackgroundColor(Color.rgb(92,212,150));
+        }
     }
 
     @Override

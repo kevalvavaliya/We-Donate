@@ -76,7 +76,7 @@ public class donor_setfragment_activity extends AppCompatActivity {
     }
 
     void setfragment() {
-       if(data_bank.curUser.getAddress()==null) {
+       if(data_bank.curUser.getAddress()==null || data_bank.curUser.getAddress().equals("nodata")) {
            toolbar.setBackgroundColor(Color.argb(255, 255, 240, 204));
            isprofilecomplete();
        }

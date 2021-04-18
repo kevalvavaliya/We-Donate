@@ -20,18 +20,18 @@
             android:layout_height="0dp"
             android:paddingLeft="5dp"
             android:layout_weight="0.5">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.45"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto_regular"
-            android:text="keval's charity"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:id="@+id/rec_charity_name"
-            />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.45"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_regular"
+                android:text="keval's charity"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:id="@+id/ch_rec_charity_name"
+                />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -40,23 +40,8 @@
                 android:text="Surat"
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
-                android:id="@+id/rec_charity_address"
+                android:id="@+id/ch_rec_charity_address"
                 />
-            <TextView
-                android:id="@+id/text_view_countdown"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="Swipe"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-
-                android:textColor="@android:color/black"
-                android:drawableEnd="@drawable/swipe"
-                android:textSize="16dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,14 +49,14 @@
             android:layout_weight="0.25"
             android:orientation="horizontal"
             android:weightSum="1">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:text="Category"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/lightgrey" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.33"
+                android:text="Category"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/lightgrey" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -99,16 +84,16 @@
             android:layout_weight="0.25"
             android:orientation="horizontal"
             android:weightSum="1">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:text="Food"
-            android:textSize="12dp"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:id="@+id/rec_category"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.33"
+                android:text="Food"
+                android:textSize="12dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:id="@+id/ch_rec_category"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -118,7 +103,7 @@
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:id="@+id/rec_item_name"
+                android:id="@+id/ch_rec_item_name"
                 />
             <TextView
                 android:layout_width="0dp"
@@ -129,7 +114,7 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:id="@+id/rec_item_desc"
+                android:id="@+id/ch_rec_item_desc"
                 />
 
         </LinearLayout>

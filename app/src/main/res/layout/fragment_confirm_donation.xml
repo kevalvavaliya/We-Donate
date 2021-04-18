@@ -1,6 +1,6 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/cardviewyellow"
+    android:id="@+id/linear_confirm_back"
    android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="50dp"
