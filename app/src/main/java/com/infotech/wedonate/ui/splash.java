@@ -15,6 +15,7 @@ import com.infotech.wedonate.data.data_bank;
 import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.data.donation_model;
 import com.infotech.wedonate.ui.home_module.home;
+import com.infotech.wedonate.util.GetDonations;
 import com.infotech.wedonate.util.Retroclient;
 
 import java.util.ArrayList;
@@ -37,8 +38,6 @@ public class splash extends AppCompatActivity implements  Runnable{
         setContentView(R.layout.activity_splash);
 
         apIinterface = Retroclient.retroinit();
-        fetchdata();
-
         CurentUser = new data_model();
         sf = getSharedPreferences("Login", MODE_PRIVATE);
         usertype= sf.getString("usertype","nodata");
@@ -65,14 +64,19 @@ public class splash extends AppCompatActivity implements  Runnable{
         if(usertype.equals("donor"))
         {
             intent =  new Intent(this, home.class);
+            GetDonations donations= new GetDonations("donor");
+            donations.fetchdata();
+
         }
         else if(usertype.equals("member")){
             intent =  new Intent(this, home.class);
         }
         else if( usertype.equals("charity")){
+            GetDonations donations = new GetDonations("charity",data_bank.curUser.getEmail());
+            donations.fetchdata();
             intent =  new Intent(this, home.class);
+            Log.d("Splash",usertype);
         }
-
         else{
             intent = new Intent(this,info.class);
         }
@@ -81,30 +85,5 @@ public class splash extends AppCompatActivity implements  Runnable{
     }
 
 
-    void fetchdata() {
-        Call<ArrayList<donation_model>> c = apIinterface.fetch_donation_list();
-        c.enqueue(new Callback<ArrayList<donation_model>>() {
-            @Override
-            public void onResponse(Call<ArrayList<donation_model>> call, Response<ArrayList<donation_model>> response) {
-                if (response.code() == 200) {
-                    data_bank.donations = response.body();
-
-                    for (donation_model m : response.body()) {
-                        String time = m.getTime();
-                        data_bank.cur_req_end_time.add(Long.parseLong(time));
-                    }
-                    for(long d: data_bank.cur_req_end_time){
-                        long cur_time = System.currentTimeMillis() / 1000;
-                        data_bank.left_time.add(cur_time - d);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<donation_model>> call, Throwable t) {
-                Toast.makeText(splash.this, "Server Error", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 }

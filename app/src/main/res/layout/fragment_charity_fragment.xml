@@ -147,7 +147,8 @@
                         android:background="@drawable/cardview_textview_round"
                         android:backgroundTint="#00557e"
                         android:padding="7dp"
-                        android:src="@drawable/forward_arrow" />
+                        android:src="@drawable/forward_arrow"
+                        android:id="@+id/charity_your_donations"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

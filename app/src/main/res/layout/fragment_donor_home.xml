@@ -146,6 +146,7 @@
                         android:background="@drawable/cardview_textview_round"
                         android:backgroundTint="#882b00"
                         android:padding="7dp"
+                        android:id="@+id/amenities_donor"
                         android:src="@drawable/forward_arrow" />
                 </LinearLayout>
 
@@ -205,6 +206,7 @@
                         android:background="@drawable/cardview_textview_round"
                         android:backgroundTint="#00557e"
                         android:padding="7dp"
+                        android:id="@+id/health_donor"
                         android:src="@drawable/forward_arrow" />
                 </LinearLayout>
             </LinearLayout>
@@ -270,6 +272,7 @@
                         android:background="@drawable/cardview_textview_round"
                         android:backgroundTint="#2e7b4e"
                         android:padding="7dp"
+                        android:id="@+id/nature_donor"
                         android:src="@drawable/forward_arrow" />
                 </LinearLayout>
             </LinearLayout>
@@ -329,6 +332,7 @@
                         android:background="@drawable/cardview_textview_round"
                         android:backgroundTint="#9b0073"
                         android:padding="7dp"
+                        android:id="@+id/education_donor"
                         android:src="@drawable/forward_arrow" />
                 </LinearLayout>
             </LinearLayout>

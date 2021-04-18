@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -76,6 +77,7 @@ public class home extends AppCompatActivity implements BottomNavigationView.OnNa
             ft.commit();
         }
         else if(data_bank.curUser.getUsertype().equals("charity")){
+            Log.d("Keval","chartity");
             ft.replace(R.id.home_frame, new charity_fragment());
             ft.commit();
         }
