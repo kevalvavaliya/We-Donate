@@ -46,7 +46,13 @@ public class donate extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_donate, container, false);
         initalization();
-        setdonationlist();
+        if(data_bank.donations.size()==0){
+            getDonations.fetchdata();
+            setdonationlist();
+        }
+        else {
+            setdonationlist();
+        }
 
         return view;
     }
@@ -87,9 +93,6 @@ public class donate extends Fragment {
                 toolbar.setBackgroundColor(Color.rgb(255, 217, 29));
                 ad = new RecylerAdapter(data_bank.donations, getContext(), dr1);
                 donation_list.setAdapter(ad);
-            } else {
-                getDonations.fetchdata();
-                setdonationlist();
             }
         } else if (data_bank.flag_donor_category == 1) {
 
@@ -98,9 +101,6 @@ public class donate extends Fragment {
                 search_linear.setBackgroundColor(Color.rgb(98, 216, 241));
                 ad = new RecylerAdapter(data_bank.donations_health, getContext(), dr2);
                 donation_list.setAdapter(ad);
-            } else {
-                getDonations.fetchdata();
-                setdonationlist();
             }
         } else if (data_bank.flag_donor_category == 2) {
 
@@ -109,9 +109,6 @@ public class donate extends Fragment {
                 search_linear.setBackgroundColor(Color.rgb(243, 102, 216));
                 ad = new RecylerAdapter(data_bank.donations_education, getContext(), dr3);
                 donation_list.setAdapter(ad);
-            } else {
-                getDonations.fetchdata();
-                setdonationlist();
             }
         } else if (data_bank.flag_donor_category == 3) {
 
@@ -120,9 +117,6 @@ public class donate extends Fragment {
                 search_linear.setBackgroundColor(Color.rgb(240, 149, 97));
                 ad = new RecylerAdapter(data_bank.donations_amenities, getContext(), dr5);
                 donation_list.setAdapter(ad);
-            } else {
-                getDonations.fetchdata();
-                setdonationlist();
             }
         } else if (data_bank.flag_donor_category == 4) {
 
@@ -131,9 +125,6 @@ public class donate extends Fragment {
                 search_linear.setBackgroundColor(Color.rgb(92, 212, 150));
                 ad = new RecylerAdapter(data_bank.donations_nature, getContext(), dr4);
                 donation_list.setAdapter(ad);
-            } else {
-                getDonations.fetchdata();
-                setdonationlist();
             }
         }
 

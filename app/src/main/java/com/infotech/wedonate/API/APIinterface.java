@@ -45,5 +45,11 @@ public interface APIinterface {
     Call<ArrayList<donation_model>> fetch_donation_list();
 
     @POST("/locations")
-    Call<String> locations(@Body curLocation loc);
+    Call<ArrayList<curLocation>> locations(@Body curLocation loc);
+
+    @POST("/member_location")
+    Call<String> member_locations(@Body curLocation loc);
+
+    @POST("/map_member_location")
+    Call<ArrayList<curLocation>> map_member_location(@Body String loc);
 }
