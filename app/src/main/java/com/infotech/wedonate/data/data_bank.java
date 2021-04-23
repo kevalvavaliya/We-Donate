@@ -18,6 +18,8 @@ public class data_bank {
         public static curLocation current_location;
         public static int flag_donor_category;
         public static int flag_charity_category;
+        public static ArrayList<curLocation> member_location_array = new ArrayList<>();
+        public static curLocation nearest_user = new curLocation();
 }
 
 

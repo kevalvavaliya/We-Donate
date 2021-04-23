@@ -75,7 +75,6 @@ public class splash extends AppCompatActivity implements  Runnable{
             GetDonations donations = new GetDonations("charity",data_bank.curUser.getEmail());
             donations.fetchdata();
             intent =  new Intent(this, home.class);
-            Log.d("Splash",usertype);
         }
         else{
             intent = new Intent(this,info.class);
