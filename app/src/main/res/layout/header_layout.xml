@@ -1,0 +1,29 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="@color/tomato"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:id="@+id/linear_drawer_profile"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center|bottom"
+        android:src="@drawable/charity"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="We-Donate:Donate to needy"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="bottom"
+        android:textStyle="bold"
+        android:paddingBottom="15dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/alatsi_regular"
+        android:id="@+id/linear_drawer_profile_text"
+        android:textAlignment="center"/>
+</LinearLayout>

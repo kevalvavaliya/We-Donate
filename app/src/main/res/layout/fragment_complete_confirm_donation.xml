@@ -1,71 +1,70 @@
-<LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#fff"
+    android:id="@+id/linear_confirm_back"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tomato"
+    android:gravity="center"
     android:orientation="vertical"
-    android:weightSum="1"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:scaleX="2"
-        android:scaleY="2"
-        app:lottie_autoPlay="true"
-        android:padding="20dp"
-        android:layout_margin="15dp"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/donation_success" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:textAlignment="center"
-        android:text="Your donation request has been successfuly\n sent to the member"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        />
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.12"
-        android:orientation="horizontal"
-        android:padding="20dp"
-        >
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:text="Return Home"
-            android:layout_marginRight="10dp"
-            android:fontFamily="@font/alatsi_regular"
-            android:background="@drawable/cardview_textview_round"
-            android:backgroundTint="@color/tomato"
-            />
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:text=" See Map"
-            android:id="@+id/map_btn"
-            android:background="@drawable/cardview_textview_round"
-            android:backgroundTint="@color/darkblue"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="@font/alatsi_regular"
-            />
+        android:layout_height="550dp"
+        android:background="@drawable/confirm_donation_back"
+        android:backgroundTint="@color/white"
+        android:elevation="40dp"
+        android:orientation="vertical"
+        android:weightSum="1">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:layout_weight="0.6"
+            android:padding="20dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/donation_success" />
+
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:background="@drawable/profile_linear_back"
+            android:gravity="center"
+            android:text="Your donation request has been \n successfuly sent to the member"
+            android:textAlignment="center"
+            android:textColor="#343030"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/rtn_home"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/confirm_donation_back"
+            android:backgroundTint="@color/darkgoldyellow"
+            android:text="Return home" />
+
+        <Button
+            android:id="@+id/map_btn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/confirm_donation_back"
+            android:backgroundTint="@color/darkblue"
+            android:text="view map" />
     </LinearLayout>
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:scaleX="2"
-        android:scaleY="2"
-        app:lottie_autoPlay="true"
-        android:padding="20dp"
-        android:layout_margin="15dp"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/delivery_boy" />
 </LinearLayout>

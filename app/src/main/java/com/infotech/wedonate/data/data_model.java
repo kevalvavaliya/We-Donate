@@ -79,4 +79,8 @@ public class data_model {
     public void setItem_category(String item_category) {
         this.item_category = item_category;
     }
+
+    public String getCharityemail() {
+        return charityemail;
+    }
 }

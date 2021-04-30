@@ -1,5 +1,6 @@
 package com.infotech.wedonate.ui.home_module.donor;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -7,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,8 +26,14 @@ import com.infotech.wedonate.R;
 import com.infotech.wedonate.adapter.RecylerAdapter;
 import com.infotech.wedonate.data.data_bank;
 import com.infotech.wedonate.data.donation_model;
+import com.infotech.wedonate.ui.home_module.home;
+import com.infotech.wedonate.ui.home_module.map;
 import com.infotech.wedonate.util.GetDonations;
 import com.infotech.wedonate.util.Retroclient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class donate extends Fragment {
 
@@ -46,6 +55,7 @@ public class donate extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_donate, container, false);
         initalization();
+        isactivedonation();
         if(data_bank.donations.size()==0){
             getDonations.fetchdata();
             setdonationlist();
@@ -139,14 +149,52 @@ public class donate extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 data_bank.position = position;
+                if(data_bank.trak_mem_flag==0) {
+                    if (data_bank.flag_donor_category == 0) {
+                        data_bank.current_donation = data_bank.donations.get(position);
+                    } else if (data_bank.flag_donor_category == 1) {
+                        data_bank.current_donation = data_bank.donations_health.get(position);
+                    } else if (data_bank.flag_donor_category == 2) {
+                        data_bank.current_donation = data_bank.donations_education.get(position);
+                    } else if (data_bank.flag_donor_category == 3) {
+                        data_bank.current_donation = data_bank.donations_amenities.get(position);
 
-                //finalAd.addItem(position, current_swipe);
-                ft.replace(R.id.donor_donation_frm, new confirm_donation());
-                finalAd.notifyItemChanged(position);
-                ft.commit();
+                    } else if (data_bank.flag_donor_category == 4) {
+                        data_bank.current_donation = data_bank.donations_nature.get(position);
+                    }
+                    ft.replace(R.id.donor_donation_frm, new confirm_donation());
+                    finalAd.notifyItemChanged(position);
+                    ft.commit();
+                }else {
+                    finalAd.notifyItemChanged(position);
+                    Toast.makeText(getContext(),"Already an active donation",Toast.LENGTH_SHORT).show();
+                }
             }
         });
         itemTouchHelper.attachToRecyclerView(donation_list);
+    }
+
+    private void isactivedonation() {
+        apIinterface= Retroclient.retroinit();
+        Call<String> c = apIinterface.is_active_donation(data_bank.curUser.getEmail());
+        c.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.code()==200)
+                {
+                    data_bank.trak_mem_flag=1;
+
+                }
+                else{
+                    data_bank.trak_mem_flag=0;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 
 }

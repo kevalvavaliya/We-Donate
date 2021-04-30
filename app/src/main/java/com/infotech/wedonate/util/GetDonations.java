@@ -33,6 +33,7 @@ public class GetDonations {
                 if (response.code() == 200) {
                     if(usertype.equals("charity")){
                         temp_list=response.body();
+
                     }
                     else if(usertype.equals("donor")){
                         data_bank.donations = response.body();
@@ -55,10 +56,13 @@ public class GetDonations {
                         }
                     }
                     if(temp_list.size()!=0){
+                        Log.d("ch_mem",email+"");
                         for(int i=0;i<temp_list.size();i++)
                         {
                             if(temp_list.get(i).getCharity_email().equalsIgnoreCase(email)){
                                 data_bank.charity_donations.add(temp_list.get(i));
+                                Log.d("ch_mem",data_bank.charity_donations.size()+"");
+
                             }
                         }
                     }

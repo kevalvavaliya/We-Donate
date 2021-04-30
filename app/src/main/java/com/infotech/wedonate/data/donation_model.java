@@ -10,6 +10,12 @@ public class donation_model {
     String time;
     String charity_email;
     String charity_mobile;
+    String donor_email;
+    String donor_name;
+    String mem_email;
+    String donor_mobile;
+    int id;
+
 
     public String getCharity_email() {
         return charity_email;
@@ -77,6 +83,46 @@ public class donation_model {
 
     public String getCode() {
         return code;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDonor_email() {
+        return donor_email;
+    }
+
+    public void setDonor_email(String donor_email) {
+        this.donor_email = donor_email;
+    }
+
+    public String getDonor_name() {
+        return donor_name;
+    }
+
+    public void setDonor_name(String donor_name) {
+        this.donor_name = donor_name;
+    }
+
+    public String getMem_email() {
+        return mem_email;
+    }
+
+    public void setMem_email(String mem_email) {
+        this.mem_email = mem_email;
+    }
+
+    public String getDonor_mobile() {
+        return donor_mobile;
+    }
+
+    public void setDonor_mobile(String donor_mobile) {
+        this.donor_mobile = donor_mobile;
     }
 
     public void setCode(String code) {

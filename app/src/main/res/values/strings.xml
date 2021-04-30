@@ -19,4 +19,7 @@
         <item>Nature</item>
     </string-array>
     <string name="title_activity_map">Map</string>
+    <string name="title_activity_member_map">Map</string>
+    <string name="navigation_drawer_open">navigation_drawer_open</string>
+    <string name="navigation_drawer_close">navigation_drawer_close</string>
 </resources>

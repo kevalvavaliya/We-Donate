@@ -22,6 +22,7 @@ import com.infotech.wedonate.data.data_model;
 import com.infotech.wedonate.ui.home_module.charity.charity_setfragment_activity;
 import com.infotech.wedonate.ui.home_module.charity.generate_request;
 import com.infotech.wedonate.ui.home_module.home;
+import com.infotech.wedonate.ui.home_module.member.no_current_donations;
 import com.infotech.wedonate.ui.home_module.setup_profile;
 import com.infotech.wedonate.util.Retroclient;
 
@@ -69,22 +70,34 @@ public class donor_setfragment_activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(dr);
         fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
+        ft=fm.beginTransaction();
         apIinterface = Retroclient.retroinit();
         user= new data_model();
+
+
 
     }
 
     void setfragment() {
-       if(data_bank.curUser.getAddress()==null || data_bank.curUser.getAddress().equals("nodata")) {
-           toolbar.setBackgroundColor(Color.argb(255, 255, 240, 204));
-           isprofilecomplete();
-       }
-       else{
-           toolbar.setBackgroundColor(getResources().getColor(R.color.cardviewyellow));
-           ft.replace(R.id.donor_donation_frm, new donate());
-           ft.commit();
-       }
+        String activedonation;
+        Intent i = getIntent();
+        activedonation = i.getStringExtra("nodonations");
+        Log.d("Active",activedonation+"hello");
+        if(activedonation!=null)
+        {
+            ft.replace(R.id.donor_donation_frm,new no_current_donations());
+            ft.commit();
+        }
+        else {
+            if (data_bank.curUser.getAddress() == null || data_bank.curUser.getAddress().equals("nodata")) {
+                toolbar.setBackgroundColor(Color.argb(255, 255, 240, 204));
+                isprofilecomplete();
+            } else {
+                toolbar.setBackgroundColor(getResources().getColor(R.color.cardviewyellow));
+                ft.replace(R.id.donor_donation_frm, new donate());
+                ft.commit();
+            }
+        }
 
     }
 
@@ -102,13 +115,13 @@ public class donor_setfragment_activity extends AppCompatActivity {
                     ft.commit();
 
                 } else if(response.body().getCode()==200){
-                    ft.replace(R.id.donor_donation_frm, new donate());
                     data_bank.curUser.setAddress(response.body().getAddress());
                     sf = getSharedPreferences("Login", MODE_PRIVATE);
                     ed = sf.edit();
 
                     ed.putString("address",response.body().getAddress());
                     ed.commit();
+                    ft.replace(R.id.donor_donation_frm, new donate());
                     ft.commit();
 
                 }

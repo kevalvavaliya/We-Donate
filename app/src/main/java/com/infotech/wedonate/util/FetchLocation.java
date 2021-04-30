@@ -97,7 +97,7 @@ public class FetchLocation {
 
     public void storelocation(asyncTask Task) {
 
-        if (!data_bank.current_location.getLatitude().isEmpty()) {
+        if (data_bank.current_location!=null) {
             curloc.setLatitude(data_bank.current_location.getLatitude());
             curloc.setLongitude(data_bank.current_location.getLongitude());
             curloc.setUseremail(data_bank.curUser.getEmail());
@@ -113,7 +113,17 @@ public class FetchLocation {
                 if (response.body().equals("true")) {
                     Task.actionPerformed();
                 } else {
+                    GetLocation(new asyncTask() {
+                        @Override
+                        public void actionPerformed() {
+                            storelocation(new asyncTask() {
+                                @Override
+                                public void actionPerformed() {
 
+                                }
+                            });
+                        }
+                    });
                 }
             }
 

@@ -121,4 +121,12 @@ public class forgotpass extends AppCompatActivity implements View.OnClickListene
     public void onNothingSelected(AdapterView<?> parent) {
         Toast.makeText(forgotpass.this,"Choose yourself",Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i  = new Intent(this,login.class);
+        startActivity(i);
+        finish();
+    }
 }

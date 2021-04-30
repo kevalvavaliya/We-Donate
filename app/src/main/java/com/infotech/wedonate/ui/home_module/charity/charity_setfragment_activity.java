@@ -85,6 +85,11 @@ public class charity_setfragment_activity extends AppCompatActivity {
             else if(data_bank.flag_charity_category==1){
                 ft.replace(R.id.request_donation_frm, new charity_donation_list());
             }
+            else if(data_bank.flag_charity_category==2){
+                ft.replace(R.id.request_donation_frm, new charity_member_lst());
+            } else if (data_bank.flag_charity_category == 3) {
+                ft.replace(R.id.request_donation_frm, new charity_donation_list());
+            }
             ft.commit();
         }
 
@@ -111,6 +116,9 @@ public class charity_setfragment_activity extends AppCompatActivity {
                     }
                     else if(data_bank.flag_charity_category==1){
                         ft.replace(R.id.request_donation_frm, new charity_donation_list());
+                    }
+                    else if(data_bank.flag_charity_category==2){
+                        ft.replace(R.id.request_donation_frm, new charity_member_lst());
                     }
                     data_bank.curUser.setAddress(response.body().getAddress());
                     sf = getSharedPreferences("Login", MODE_PRIVATE);

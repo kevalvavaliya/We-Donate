@@ -127,10 +127,12 @@ public class login extends AppCompatActivity implements View.OnClickListener, Ad
                         } else if (response.body().getUsertype().equalsIgnoreCase("member")) {
                             ed.putString("username", response.body().getName());
                             ed.putString("mobile",response.body().getMobile());
+                            ed.putString("chemail",response.body().getCharityemail());
                             data_bank.curUser.setEmail(response.body().getEmail());
                             data_bank.curUser.setName(response.body().getName());
                             data_bank.curUser.setUsertype(response.body().getUsertype());
                             data_bank.curUser.setMobile(response.body().getMobile());
+                            data_bank.curUser.setCharityemail(response.body().getCharityemail());
 
                             Intent intent = new Intent(login.this, home.class);
                             startActivity(intent);

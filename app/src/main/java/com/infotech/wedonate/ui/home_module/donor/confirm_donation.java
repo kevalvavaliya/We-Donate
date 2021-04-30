@@ -19,14 +19,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.R;
+import com.infotech.wedonate.data.Token_model;
 import com.infotech.wedonate.data.curLocation;
 import com.infotech.wedonate.data.data_bank;
+import com.infotech.wedonate.data.donation_model;
 import com.infotech.wedonate.services.locationservice;
 import com.infotech.wedonate.util.FetchLocation;
 import com.infotech.wedonate.util.Retroclient;
@@ -112,7 +115,7 @@ public class confirm_donation extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View v) {
-        if (getContext().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             request_location();
         } else {
             progressDialog.show();
@@ -175,7 +178,6 @@ public class confirm_donation extends Fragment implements View.OnClickListener {
                 if(response.code()==200)
                 {
                     data_bank.member_location_array=response.body();
-                    progressDialog.dismiss();
                     find_nearest_member();
                 }
                 else{
@@ -193,8 +195,9 @@ public class confirm_donation extends Fragment implements View.OnClickListener {
 
 
     private void  find_nearest_member() {
-
             String near_mem = "";
+            String near_name="";
+            boolean flag=false;
             ArrayList<curLocation> mem_loc = data_bank.member_location_array;
 
             Double maxLatitute = Double.parseDouble(data_bank.current_location.getLatitude())+0.5;
@@ -206,20 +209,104 @@ public class confirm_donation extends Fragment implements View.OnClickListener {
         for(curLocation c : mem_loc){
                 Double latitude= Double.parseDouble(c.getLatitude());
                 Double longitude= Double.parseDouble(c.getLongitude());
-            Log.d("near1",latitude+":::"+longitude);
+            //Log.d("near1",latitude+":::"+longitude);
             //Log.d("near1","min::"+minLatitute+":::"+minLongitude);
-            Log.d("neardonor",data_bank.current_location.getLatitude()+"::"+data_bank.current_location.getLongitude());
+            //Log.d("neardonor",data_bank.current_location.getLatitude()+"::"+data_bank.current_location.getLongitude());
 
                 if(latitude >= minLatitute && latitude <= maxLatitute ){
                     if(longitude >= minLongitude && longitude <= maxLongitude )
                     {
                         Log.d("nearmember",c.getUseremail());
                         near_mem = c.getUseremail();
+                        near_name=c.getUsername();
+                        flag=false;
                     }
                 }
+                else{
+                    flag=true;
+                    //Log.d("flag",flag+"");
+                }
             }
-        data_bank.nearest_user.setUseremail(near_mem);
-        fm.beginTransaction().replace(R.id.donor_donation_frm, new complete_confirm_donation()).commit();
+
+        if(flag!=true) {
+           // Log.d("nearmember","heelp");
+           // progressDialog.dismiss();
+            progressDialog.setMessage("Finding member...");
+            data_bank.nearest_user.setUseremail(near_mem);
+            data_bank.nearest_user.setUsername(near_name);
+            notifymember();
+
+            fm.beginTransaction().replace(R.id.donor_donation_frm, new complete_confirm_donation()).commit();
+        }
+        else{
+            progressDialog.dismiss();
+            fm.beginTransaction().replace(R.id.donor_donation_frm, new incomplete_confirm_donation()).commit();
+        }
+
+    }
+
+    private void notifymember() {
+
+        Token_model t = new Token_model();
+        t.setEmail(data_bank.nearest_user.getUseremail());
+        t.setDonor_email(data_bank.curUser.getEmail());
+        t.setUsertype("member");
+        Call<String> c = apIinterface.sendNotify(t);
+        c.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.code()==200)
+                {
+                    //Log.d("notifcation","success");
+                    store_current_donation();
+                }
+                else{
+                    Log.d("notifcation","fail");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+    private void store_current_donation() {
+        donation_model cur = new donation_model();
+        cur.setDonor_name(data_bank.curUser.getName());
+        cur.setDonor_email(data_bank.curUser.getEmail());
+        cur.setDonor_mobile(data_bank.curUser.getMobile());
+        cur.setCharity_email(data_bank.current_donation.getCharity_email());
+        cur.setItem_category(data_bank.current_donation.getItem_category());
+        cur.setItem_name(data_bank.current_donation.getItem_name());
+        cur.setMem_email(data_bank.nearest_user.getUseremail());
+
+        Call<String> c = apIinterface.current_donation(cur);
+        c.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.code()==200)
+                {
+                   // Log.d("Current_Donation","success");
+                    progressDialog.dismiss();
+                }
+                else{
+                  //  Log.d("Current_Donation","fail");
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+               // Log.d("Current_Donation","server error");
+                progressDialog.dismiss();
+
+            }
+        });
+        
 
     }
 }
