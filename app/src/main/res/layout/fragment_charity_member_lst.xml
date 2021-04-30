@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:gravity="center"
+        android:background="#F366D8"
+        android:id="@+id/search_linear_back"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/search_edittext"
+            android:backgroundTint="@color/white"
+            android:hint="search..."
+            android:paddingLeft="20dp"
+            android:defaultFocusHighlightEnabled="false"
+            android:textColor="@color/black"
+            android:focusedByDefault="false"
+            android:textColorHint="@color/lightgrey" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/search_imageview"
+            android:backgroundTint="#FF9B00"
+            android:padding="7dp"
+            android:src="@drawable/search" />
+    </LinearLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/charity_memberlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:layout_marginBottom="5dp"
+            android:fitsSystemWindows="true" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="50dp"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/refresh"
+            app:backgroundTint="#FF9B00"
+            android:id="@+id/floating_chartity_mem_list"
+            app:layout_anchorGravity="bottom|right|end" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

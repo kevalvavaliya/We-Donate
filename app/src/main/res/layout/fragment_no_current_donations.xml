@@ -1,0 +1,27 @@
+<LinearLayout android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:textColor="#777676"
+        android:textSize="28dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        android:text="Oops!! oops there are no \n current donations"
+        />
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        app:lottie_rawRes="@raw/no_cur_donations"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+         />
+
+</LinearLayout>

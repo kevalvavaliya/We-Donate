@@ -33,7 +33,7 @@ public class locationservice extends Service {
 
                         }
                     });
-                    //Log.d("Service", "started");
+                    Log.d("Service", "started");
                    try {
                        Thread.sleep(30000);
                    } catch (InterruptedException e) {

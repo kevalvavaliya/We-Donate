@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,6 @@ public class generate_request extends Fragment implements AdapterView.OnItemSele
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_generate_request, container, false);
         initalization();
-
         return v;
     }
     void  initalization(){
@@ -53,6 +53,10 @@ public class generate_request extends Fragment implements AdapterView.OnItemSele
         req_gen = v.findViewById(R.id.req_gen);
         req_donation = new data_model();
         apIinterface= Retroclient.retroinit();
+        name=data_bank.curUser.getName();
+        charity_name.setText(name);
+        charity_mobile.setText("+91 "+data_bank.curUser.getMobile());
+
 
         ArrayAdapter ad = ArrayAdapter.createFromResource(getActivity(),R.array.category,R.layout.spinner_category_text);
         category.setAdapter(ad);
@@ -71,8 +75,7 @@ public class generate_request extends Fragment implements AdapterView.OnItemSele
         item_name = Item_name.getText().toString();
         item_desc = Item_desc.getText().toString();
 
-        charity_name.setText(name);
-        charity_mobile.setText("+91 "+mobile);
+
 
     }
 
@@ -86,7 +89,7 @@ public class generate_request extends Fragment implements AdapterView.OnItemSele
             category_value = "food";
         else if (position == 3)
             category_value = "education";
-        else if (position == 3)
+        else if (position == 4)
             category_value = "nature";
     }
 
@@ -98,7 +101,8 @@ public class generate_request extends Fragment implements AdapterView.OnItemSele
     @Override
     public void onClick(View v) {
         requestform();
-        if(name.length()!=0 && email.length()!=0 && mobile.length()!=0 && item_desc.length()!=0 && item_name.length()!=0 && category_value!=null){
+        Log.d("charity_re",name);
+        if(name.length()!=0 && email.length()!=0 && mobile.length()!=0 && item_desc.length()!=0 && item_name.length()!=0 ){
             req_donation.setEmail(email);
             req_donation.setName(name);
             req_donation.setMobile(mobile);

@@ -18,7 +18,7 @@
         android:gravity="bottom"
         android:paddingLeft="5dp"
         android:paddingTop="30dp"
-        android:text="Hello, Keval"
+        android:text="Hello, "
         android:textColor="@color/black"
         android:textSize="34dp"
         android:id="@+id/user_name"
@@ -62,7 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.8"
-            android:src="@drawable/donation_home" />
+            android:src="@drawable/donation_home"
+            android:id="@+id/mem_ch_donation"/>
     </LinearLayout>
 
     <LinearLayout
@@ -88,7 +89,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.42"
+            android:layout_weight="0.55"
             android:padding="8dp"
             android:weightSum="1">
 
@@ -97,7 +98,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
                 android:background="@drawable/cardview_back"
                 android:backgroundTint="#62d8f1"
                 android:padding="8dp"
@@ -152,6 +152,5 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

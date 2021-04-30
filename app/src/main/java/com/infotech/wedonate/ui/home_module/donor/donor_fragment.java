@@ -17,9 +17,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.infotech.wedonate.API.APIinterface;
 import com.infotech.wedonate.R;
 import com.infotech.wedonate.data.data_bank;
 import com.infotech.wedonate.ui.home_module.charity.charity_setfragment_activity;
+import com.infotech.wedonate.util.Retroclient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class donor_fragment extends Fragment implements View.OnClickListener {
 
@@ -28,13 +34,21 @@ public class donor_fragment extends Fragment implements View.OnClickListener {
     View view;
     LinearLayout donor_donate;
     ImageView amenities,health,education,nature;
+    androidx.appcompat.widget.Toolbar toolbar_dr;
+    APIinterface apIinterface;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         view= inflater.inflate(R.layout.fragment_donor_home, container, false);
-
+        view= inflater.inflate(R.layout.fragment_donor_home, container, false);
         intialization();
+
+        if (data_bank.noti_token.getToken() != null) {
+            data_bank.noti_token.setEmail(data_bank.curUser.getEmail());
+            data_bank.noti_token.setUsertype(data_bank.curUser.getUsertype());
+            insertnotificationToken();
+        }
         return view;
     }
 
@@ -45,7 +59,9 @@ public class donor_fragment extends Fragment implements View.OnClickListener {
         education = view.findViewById(R.id.education_donor);
         nature =  view.findViewById(R.id.nature_donor);
         amenities=view.findViewById(R.id.amenities_donor);
-
+        apIinterface= Retroclient.retroinit();
+        toolbar_dr = getActivity().findViewById(R.id.toolbar_dr);
+        toolbar_dr.setVisibility(View.VISIBLE);
         String uname = data_bank.curUser.getName();
         int index = uname.indexOf(" ");
         if(index!=-1) {
@@ -87,5 +103,24 @@ public class donor_fragment extends Fragment implements View.OnClickListener {
         }
         Intent intent = new Intent(getActivity(),donor_setfragment_activity.class);
         startActivity(intent);
+    }
+
+
+    private void insertnotificationToken() {
+        Call<String> c = apIinterface.insert_notification_token(data_bank.noti_token);
+        c.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.code() == 200) {
+                } else {
+                    Log.d("response_donor_noti", "false");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+            }
+        });
+
     }
 }

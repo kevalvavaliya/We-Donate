@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "865966178611",
+    "project_id": "wedonate-bdc49",
+    "storage_bucket": "wedonate-bdc49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865966178611:android:9cb1cab5e3b043e05f7e46",
+        "android_client_info": {
+          "package_name": "com.infotech.wedonate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865966178611-papgipk8aalr45qplosleb3h3anhvus2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2U1JJ-IpsT04mcshfWI8Fr84itW9bumg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865966178611-papgipk8aalr45qplosleb3h3anhvus2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
