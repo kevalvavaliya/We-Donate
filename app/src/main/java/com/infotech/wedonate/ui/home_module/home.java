@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -60,12 +61,18 @@ public class home extends AppCompatActivity implements BottomNavigationView.OnNa
     }
     void setdrawernavigation(){
         toolbar_dr = findViewById(R.id.toolbar_dr);
+        toolbar_dr.setVisibility(View.VISIBLE);
         drawerLayout = findViewById(R.id.drwaer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar_dr,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         toolbar_dr.setNavigationIcon(R.drawable.hamburger);
         navigationView = findViewById(R.id.drawer_navigation);
+        if(data_bank.menu_flag == 1) {
+            final Menu menu = navigationView.getMenu();
+            MenuItem item = menu.getItem(2);
+            item.setTitle("Track member");
+        }
         if(data_bank.menu_flag == 2) {
             final Menu menu = navigationView.getMenu();
             MenuItem item = menu.getItem(2);
@@ -159,7 +166,7 @@ public class home extends AppCompatActivity implements BottomNavigationView.OnNa
         c.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.code()==400)
+                if(response.code()==200)
                 {
                     if(data_bank.menu_flag == 1){
                         if(data_bank.curUser.getUsertype().equalsIgnoreCase("donor")){

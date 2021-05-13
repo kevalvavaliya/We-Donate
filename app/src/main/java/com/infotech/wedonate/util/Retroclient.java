@@ -7,7 +7,8 @@ import retrofit2.Retrofit;
 
 public class Retroclient {
 
-   private static String url="http://192.168.43.83:5000";
+   private static String url="http://139.59.30.134:8888/";
+   //private static String url="http://192.168.43.83:5000";
  //  private static String url="https://wedonate.herokuapp.com/";
    public static APIinterface retroinit()
     {

@@ -47,6 +47,8 @@ public class member_fragment extends Fragment implements View.OnClickListener {
     TextView user_name;
     String username;
     ImageView chariy_donations;
+    androidx.appcompat.widget.Toolbar toolbar_dr;
+
 
 
     @Override
@@ -54,6 +56,8 @@ public class member_fragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_member_fragment, container, false);
+        toolbar_dr = getActivity().findViewById(R.id.toolbar_dr);
+        toolbar_dr.setVisibility(View.VISIBLE);
         chariy_donations = view.findViewById(R.id.mem_ch_donation);
         chariy_donations.setOnClickListener(this);
         return view;
@@ -83,7 +87,7 @@ public class member_fragment extends Fragment implements View.OnClickListener {
         String uname = data_bank.curUser.getName();
         int index = uname.indexOf(" ");
         if (index != -1) {
-            username = "Hello, " + uname.substring(0, index);
+            username = "Hello \uD83D\uDC4B, " + uname.substring(0, index);
             user_name.setText(username);
         } else {
             user_name.setText("Hello, " + uname);
@@ -167,5 +171,10 @@ public class member_fragment extends Fragment implements View.OnClickListener {
             Intent i = new Intent(getActivity(), member_setfragement_activity.class);
             startActivity(i);
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar_dr.setVisibility(View.VISIBLE);
     }
 }
