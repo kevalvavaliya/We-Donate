@@ -65,11 +65,11 @@ public class donor_fragment extends Fragment implements View.OnClickListener {
         String uname = data_bank.curUser.getName();
         int index = uname.indexOf(" ");
         if(index!=-1) {
-            username = "Hello, " + uname.substring(0, index);
+            username = "Hello \uD83D\uDC4B, " + uname.substring(0, index);
             user_name.setText(username);
         }
         else{
-            user_name.setText("Hello, "+uname);
+            user_name.setText("Hello \uD83D\uDC4B, "+uname);
         }
 
 
@@ -122,5 +122,12 @@ public class donor_fragment extends Fragment implements View.OnClickListener {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar_dr.setVisibility(View.VISIBLE);
+        Log.d("onresume","resumed");
     }
 }

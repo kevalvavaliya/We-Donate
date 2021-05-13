@@ -31,6 +31,8 @@ public class charity_fragment extends Fragment implements View.OnClickListener {
     TextView user_name;
     String username;
     APIinterface apIinterface;
+    androidx.appcompat.widget.Toolbar toolbar_dr;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,6 +44,9 @@ public class charity_fragment extends Fragment implements View.OnClickListener {
         }
 
         view = inflater.inflate(R.layout.fragment_charity_fragment, container, false);
+        toolbar_dr = getActivity().findViewById(R.id.toolbar_dr);
+        toolbar_dr.setVisibility(View.VISIBLE);
+
         your_donations = view.findViewById(R.id.charity_your_donations);
         request_donation=view.findViewById(R.id.request_donation);
         user_name = view.findViewById(R.id.user_name);
@@ -60,7 +65,7 @@ public class charity_fragment extends Fragment implements View.OnClickListener {
         String uname = data_bank.curUser.getName();
         int index = uname.indexOf(" ");
         if(index!=-1) {
-            username = "Hello, " + uname.substring(0, index);
+            username = "Hello \uD83D\uDC4B, " + uname.substring(0, index);
             user_name.setText(username);
         }
         else{
@@ -108,5 +113,12 @@ public class charity_fragment extends Fragment implements View.OnClickListener {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar_dr.setVisibility(View.VISIBLE);
+        Log.d("onresume","resumed");
     }
 }
